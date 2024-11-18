@@ -1,0 +1,101 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>PIDLibrary-Runtime</name>
+    </assembly>
+    <members>
+        <member name="T:PIDLibrary.Control.PIDController">
+            <summary>
+            The base type for any PID controllers.
+            </summary>
+            Author: Mathew Aloisio
+        </member>
+        <member name="M:PIDLibrary.Control.PIDController.Update(System.Single,System.Single)">
+            <summary>Updates the PID controller and returns the output.</summary>
+            <param name="pError"></param>
+            <param name="pDeltaTime"></param>
+            <returns>the output of the updated PID controller.</returns>
+        </member>
+        <member name="M:PIDLibrary.Control.PIDController.SetIntegral(System.Single)">
+            <summary>Sets the undetlying 'integral' component of the PID controller.</summary>
+            <param name="pIntegral"></param>
+        </member>
+        <member name="M:PIDLibrary.Control.PIDController.SetDerivative(System.Single)">
+            <summary>Sets the underlying 'derivative' component of the PID controller.</summary>
+            <param name="pDerivative"></param>
+        </member>
+        <member name="M:PIDLibrary.Control.PIDController.SetPreviousError(System.Single)">
+            <summary>Sets the underlying 'previous error' component of the PID controller.</summary>
+            <param name="pPreviousError"></param>
+        </member>
+        <member name="T:PIDLibrary.Control.PIDRotationController">
+            <summary>
+            Provides functionality for computing the required acceleration to orient a Rigidbody.
+            </summary>
+            Author: Mathew Aloisio
+        </member>
+        <member name="F:PIDLibrary.Control.PIDRotationController.m_PIDs">
+            <summary>An array that holds the underlying PID control loop for each dimension of the Quaternion.</summary>
+        </member>
+        <member name="M:PIDLibrary.Control.PIDRotationController.SyncPIDs">
+            <summary>Syncs all PID tuning parameters.</summary>
+        </member>
+        <member name="M:PIDLibrary.Control.PIDRotationController.SyncPIDsIfDirty">
+            <summary>Syncs all PIDs only if the tuning values are out of sync.</summary>
+        </member>
+        <member name="M:PIDLibrary.Control.PIDRotationController.ComputeRequiredAngularAcceleration(UnityEngine.Quaternion,UnityEngine.Quaternion,UnityEngine.Vector3,System.Single)">
+            <summary>
+            Computes the required angular acceleration to rotate the object associated with the PID loops
+            from the rotation, pFromRotation, to the target rotation, pToRotation.
+            
+            Updates the underlying PIDs.
+            </summary>
+            <param name="pFromRotation"></param>
+            <param name="pToRotation"></param>
+            <param name="pCurrentAngularVelocity"></param>
+            <param name="pDeltaTime"></param>
+            <returns>the angular acceleration required to rotate the relevant object from the specified rotation to the desired rotation under the current angular velocity condition and relevant time delta between PID updates.</returns>
+        </member>
+        <member name="M:PIDLibrary.Control.PIDRotationController.Update(UnityEngine.Quaternion,UnityEngine.Quaternion,System.Single)">
+            <summary>Updates the PID controllers and returns the result.</summary>
+            <param name="pError"></param>
+            <param name="pDelta"></param>
+            <param name="pDeltaTime"></param>
+            <returns>the result of the latest PID update.</returns>
+        </member>
+        <member name="M:PIDLibrary.Control.PIDRotationController.MultiplyByScalar(UnityEngine.Quaternion,System.Single)">
+            <summary>Multiplies the Quaternion pQuaternion by the given scalar and returns the result.</summary>
+            <param name="pQuaternion"></param>
+            <param name="pScalar"></param>
+            <returns>the given Quaternion multiplied by the given scalar.</returns>
+        </member>
+        <member name="M:PIDLibrary.Control.PIDRotationController.SubtractQuaternion(UnityEngine.Quaternion,UnityEngine.Quaternion)">
+            <summary>Subtracts pRHS quaternion from pLHS.</summary>
+            <param name="pLHS"></param>
+            <param name="pRHS"></param>
+            <returns>the result of subtracting quaternion pLHS from pRHS.</returns>
+        </member>
+        <member name="M:PIDLibrary.Control.PIDRotationController.RotationDifference(UnityEngine.Quaternion,UnityEngine.Quaternion)">
+            <summary>Computes and returns the rotation difference from pFromRotation to pToRotation.</summary>
+            <param name="pFromRotation"></param>
+            <param name="pToRotation"></param>
+            <returns>the rotation difference from pFromRotation to pToRotation.</returns>
+        </member>
+        <member name="M:PIDLibrary.Control.PIDRotationController.MultiplyMatrixAsVector(UnityEngine.Matrix4x4,UnityEngine.Quaternion)">
+            <summary>Mulitplies the 4x4 matrix using the elements of the given quaternion as a 4d vector and returns the result.</summary>
+            <param name="pMatrix"></param>
+            <param name="pQuaternion"></param>
+            <returns>the result of multiplying the 4x4 matrix by the given quaternion's elements treated as a 4d vector.</returns>
+        </member>
+        <member name="M:PIDLibrary.Control.PIDRotationController.ToEulerAngleQuaternion(UnityEngine.Vector3)">
+            <summary>Returns a Quaternion where the c, y, z elements are that of the given Vector3, pEulerAngles, and the w element is 0.</summary>
+            <param name="pEulerAngles"></param>
+            <returns>a Quaternion where the c, y, z elements are that of the given Vector3, pEulerAngles, and the w element is 0</returns>
+        </member>
+        <member name="M:PIDLibrary.Control.PIDRotationController.ComputeRequiredRotationMatrix(UnityEngine.Quaternion)">
+            <summary>Computes and returns an orthogonalized 4x4 matrix for pRotation.</summary>
+            <param name="pRotation"></param>
+            <returns>an orthogonalized 4x4 matrix for pRotation.</returns>
+        </member>
+    </members>
+</doc>

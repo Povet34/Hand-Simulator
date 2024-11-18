@@ -1,0 +1,584 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>AdaptiveHands-Editor</name>
+    </assembly>
+    <members>
+        <member name="T:AdaptiveHands.Editor.AdaptiveHandsEditorSettings">
+            <summary>
+            A public static class that stores settings for Adaptive Hands.
+            </summary>
+            Author: Mathew Aloisio
+        </member>
+        <member name="F:AdaptiveHands.Editor.AdaptiveHandsEditorSettings.HandDiagramSettings.diagram">
+            <summary>The color to render hand bone collider gizmos with.</summary>
+        </member>
+        <member name="F:AdaptiveHands.Editor.AdaptiveHandsEditorSettings.HandDiagramSettings.distalColor">
+            <summary>The color of the distal bones in the hand bone diagram.</summary>
+        </member>
+        <member name="F:AdaptiveHands.Editor.AdaptiveHandsEditorSettings.HandDiagramSettings.intermediateColor">
+            <summary>The color of the intermediate bones in the hand bone diagram.</summary>
+        </member>
+        <member name="F:AdaptiveHands.Editor.AdaptiveHandsEditorSettings.HandDiagramSettings.proximalColor">
+            <summary>The color of the proximal bones in the hand bone diagram.</summary>
+        </member>
+        <member name="F:AdaptiveHands.Editor.AdaptiveHandsEditorSettings.HandleSettings.colliderColor">
+            <summary>The color to use for collider handles.</summary>
+        </member>
+        <member name="F:AdaptiveHands.Editor.AdaptiveHandsEditorSettings.ExportAnimationSettings.exportPath">
+            <summary>The path to export animation clips to.</summary>
+        </member>
+        <member name="T:AdaptiveHands.Editor.AdaptiveHandsEditorSettings.SettingsData">
+            <summary>Defines the settings for the AdaptiveHandsEditorSettings static class.</summary>
+        </member>
+        <member name="F:AdaptiveHands.Editor.AdaptiveHandsEditorSettings.SettingsData.handDiagramSettings">
+            <summary>The settings to use when displaying the hand diagram.</summary>
+        </member>
+        <member name="F:AdaptiveHands.Editor.AdaptiveHandsEditorSettings.SettingsData.handleSettings">
+            <summary>The settings to use for handles relating to adaptive hands.</summary>
+        </member>
+        <member name="F:AdaptiveHands.Editor.AdaptiveHandsEditorSettings.SettingsData.exportAnimationSettings">
+            <summary>The settings to use when exporting animations.</summary>
+        </member>
+        <member name="F:AdaptiveHands.Editor.AdaptiveHandsEditorSettings.EDITOR_PREFS_STRING_GLOBAL">
+            <summary>The string name the 'Global' path move editor settings are saved under in 'EditorPrefs'.</summary>
+        </member>
+        <member name="P:AdaptiveHands.Editor.AdaptiveHandsEditorSettings.Global">
+            <summary>The global path move editor settings.</summary>
+        </member>
+        <member name="F:AdaptiveHands.Editor.AdaptiveHandsEditorSettings.DEFAULT_HAND_BONE_DIAGRAM_PATH">
+            <summary>The defualt hand bone diagram path.</summary>
+        </member>
+        <member name="M:AdaptiveHands.Editor.AdaptiveHandsEditorSettings.SaveEditorPrefs">
+            <summary>Saves the editor preferences for the 'Path Move Editor Settings'.</summary>
+        </member>
+        <member name="M:AdaptiveHands.Editor.AdaptiveHandsEditorSettings.LoadEditorPrefs">
+            <summary>Loads the editor preferences for the 'Path Move Editor Settings'.</summary>
+        </member>
+        <member name="T:AdaptiveHands.Editor.AdaptiveHandsEditorSettingsWindow">
+            <summary>
+            A window where adaptive hands settings can be modified.
+            </summary>
+            Author: Mathew Aloisio
+        </member>
+        <member name="F:AdaptiveHands.Editor.AdaptiveHandsEditorSettingsWindow.m_HandDiagramSettingsGroupEnabled">
+            <summary>Is the hand visualization settings dropdown enabled?</summary>
+        </member>
+        <member name="F:AdaptiveHands.Editor.AdaptiveHandsEditorSettingsWindow.m_HandleSettingsGroupEnabled">
+            <summary>Is the handle settings dropdown enabled?</summary>
+        </member>
+        <member name="F:AdaptiveHands.Editor.AdaptiveHandsEditorSettingsWindow.m_AnimationExportSettingsGroupEnabled">
+            <summary>Is the animation export settings dropdown enabled?</summary>
+        </member>
+        <member name="E:AdaptiveHands.Editor.AdaptiveHandsEditorSettingsWindow.Initialized">
+            <summary>A C# delegate event that is invoked when the AdaptiveHandsEditorSettingsWindow is intialized.</summary>
+        </member>
+        <member name="F:AdaptiveHands.Editor.AdaptiveHandsEditorSettingsWindow.m_ScrollPosition">
+            <summary>The scroll position for the editor window.</summary>
+        </member>
+        <member name="M:AdaptiveHands.Editor.AdaptiveHandsEditorSettingsWindow.ResetGlobalSettings">
+            <summary>Resets and overwrites the AdaptiveHandsEditorSettings static classes' settings with the ones from this AdaptiveHandsEditorSettingsWindow.</summary>
+        </member>
+        <member name="T:AdaptiveHands.Editor.Animation.GenericAnimationExporter">
+            <summary>
+            A public static class that provides methods to export generic animations.
+            </summary>
+            Author: Mathew Aloisio
+        </member>
+        <member name="P:AdaptiveHands.Editor.Animation.GenericAnimationExporter.IsRecording">
+            <summary>Returns true if a clip is being recorded, otherwise false.</summary>
+        </member>
+        <member name="F:AdaptiveHands.Editor.Animation.GenericAnimationExporter.PreUpdate">
+            <summary>A public event that is invoked at the start of every frame. This may be useful to modify a GameObject before any changes to it are recorded for the frame.</summary>
+        </member>
+        <member name="F:AdaptiveHands.Editor.Animation.GenericAnimationExporter.PostUpdate">
+            <summary>A public event that is invoked every at the end of every frame. This may be useful to modify a GameObject after  any changes to it are recorded for the frame.</summary>
+        </member>
+        <member name="F:AdaptiveHands.Editor.Animation.GenericAnimationExporter.StartedRecording">
+            <summary>A public event that is invoked whenever a recording is started.</summary>
+        </member>
+        <member name="F:AdaptiveHands.Editor.Animation.GenericAnimationExporter.StoppedRecording">
+            <summary>A public event that is invoked whenever a recording is stopped.</summary>
+        </member>
+        <member name="F:AdaptiveHands.Editor.Animation.GenericAnimationExporter.m_RecordingClipTimestamp">
+            <summary>The timestamp to insert the next key frame in the animation curve.</summary>
+        </member>
+        <member name="F:AdaptiveHands.Editor.Animation.GenericAnimationExporter.m_RecordingGameObjects">
+            <summary>An array of GameObjects whose Transforms are being recorded to an animation clip by the exporter.</summary>
+        </member>
+        <member name="F:AdaptiveHands.Editor.Animation.GenericAnimationExporter.m_IgnoreGameObjects">
+            <summary>An array of GameObjects that are ignored in recording.</summary>
+        </member>
+        <member name="F:AdaptiveHands.Editor.Animation.GenericAnimationExporter.m_RecordingAnimationClip">
+            <summary>A reference to the AnimationClip this component is currently recording to.</summary>
+        </member>
+        <member name="F:AdaptiveHands.Editor.Animation.GenericAnimationExporter.m_RecordingDataPositions">
+            <summary>A array of dictionaries containing the position data for the current animation recording. (m_RecordingDataPositions[0] => x | m_RecordingDataPositions[1] => y | m_RecordingDataPositions[2] => z)</summary>
+        </member>
+        <member name="F:AdaptiveHands.Editor.Animation.GenericAnimationExporter.m_RecordingDataRotations">
+            <summary>A array of dictionaries containing the rotation data for the current animation recording. (m_RecordingDataRotations[0] => x | m_RecordingDataRotations[1] => y | m_RecordingDataRotations[2] => z | m_RecordingDataRotations[3] => w)</summary>
+        </member>
+        <member name="F:AdaptiveHands.Editor.Animation.GenericAnimationExporter.m_RecordingDataScales">
+            <summary>An array of dictionaries containing the scale data for the current animation recording. (m_RecordingDataScales[0] => x | m_RecordingDataScales[1] => y | m_RecordingDataScales[2] => z)</summary>
+        </member>
+        <member name="M:AdaptiveHands.Editor.Animation.GenericAnimationExporter.GenerateAnimationClip(System.String,UnityEngine.GameObject[],UnityEngine.GameObject[])">
+            <summary>
+            A method that generates a generic animation clip for the current hand position(s) as a 1 frame snapshot.
+            </summary>
+            <param name="pClipName">The name of the animation clip being recorded.</param>
+            <param name="pRecordObjects">An array of GameObjects to record in the generic animation clip.</param>
+            <param name="pIgnoreObjects">An array of GameObjects to ignore in the generic animation clip.</param>
+            <returns>A generic AnimationClip with the hand positions provided as arguments.</returns>
+        </member>
+        <member name="M:AdaptiveHands.Editor.Animation.GenericAnimationExporter.StartRecording(System.String,UnityEngine.GameObject[],UnityEngine.GameObject[])">
+            <summary>Starts recording an animation clip with the specified name involving the specified 'record objects'.</summary>
+            <param name="pClipName">The name of the clip being recorded.</param>
+            <param name="pRecordObjects">An array of GameObjects to record in the generic animation clip.</param>
+            <param name="pIgnoreObjects">An array of GameObjects to ignore in the generic animation clip.</param>
+        </member>
+        <member name="M:AdaptiveHands.Editor.Animation.GenericAnimationExporter.FinishRecording">
+            <summary>Stops recording the current animation clip and returns it.</summary>
+        </member>
+        <member name="M:AdaptiveHands.Editor.Animation.GenericAnimationExporter.OnRecordFrame">
+            <summary>A private callback that is called each frame while recording an animation.</summary>
+        </member>
+        <member name="T:AdaptiveHands.Editor.Animation.GenericAnimationExporterWindow">
+            <summary>
+            A tool designed to make it easy to export generic hand animations.
+            </summary>
+            Author: Mathew Aloisio
+        </member>
+        <member name="F:AdaptiveHands.Editor.Animation.GenericAnimationExporterWindow.m_ExportClipName">
+            <summary>The name to use for exported animation clips.</summary>
+        </member>
+        <member name="E:AdaptiveHands.Editor.Animation.GenericAnimationExporterWindow.Initialized">
+            <summary>An event that is invoked when the GenericAnimationExporterWindow is intialized.</summary>
+        </member>
+        <member name="F:AdaptiveHands.Editor.Animation.GenericAnimationExporterWindow.m_ScrollPosition">
+            <summary>The scroll position for the editor window.</summary>
+        </member>
+        <member name="F:AdaptiveHands.Editor.Animation.GenericAnimationExporterWindow.m_SerializedObject">
+            <summary>The SerializedObject representation of this editor window.</summary>
+        </member>
+        <member name="F:AdaptiveHands.Editor.Animation.GenericAnimationExporterWindow.m_CaptureHands">
+            <summary>An array of hands to capture in the generic animation clip.</summary>
+        </member>
+        <member name="T:AdaptiveHands.Editor.Animation.HumanoidAnimationExporter">
+            <summary>
+            A public static class that provides methods to export adaptive hand animations.
+            </summary>
+            Author: Mathew Aloisio
+        </member>
+        <member name="P:AdaptiveHands.Editor.Animation.HumanoidAnimationExporter.IsRecording">
+            <summary>Returns true if a clip is being recorded, otherwise false.</summary>
+        </member>
+        <member name="F:AdaptiveHands.Editor.Animation.HumanoidAnimationExporter.PreUpdate">
+            <summary>A public event that is invoked at the start of every frame. This may be useful to modify a GameObject before any changes to it are recorded for the frame.</summary>
+        </member>
+        <member name="F:AdaptiveHands.Editor.Animation.HumanoidAnimationExporter.PostUpdate">
+            <summary>A public event that is invoked every at the end of every frame. This may be useful to modify a GameObject after  any changes to it are recorded for the frame.</summary>
+        </member>
+        <member name="F:AdaptiveHands.Editor.Animation.HumanoidAnimationExporter.StartedRecording">
+            <summary>A public event that is invoked whenever a recording is started.</summary>
+        </member>
+        <member name="F:AdaptiveHands.Editor.Animation.HumanoidAnimationExporter.StoppedRecording">
+            <summary>A public event that is invoked whenever a recording is stopped.</summary>
+        </member>
+        <member name="F:AdaptiveHands.Editor.Animation.HumanoidAnimationExporter.m_RecordingClipTimestamp">
+            <summary>The timestamp to insert the next key frame in the animation curve(s).</summary>
+        </member>
+        <member name="F:AdaptiveHands.Editor.Animation.HumanoidAnimationExporter.m_RecordingAnimator">
+            <summary>A reference to a humanoid Animator being currently recorded, otherwise null.</summary>
+        </member>
+        <member name="F:AdaptiveHands.Editor.Animation.HumanoidAnimationExporter.m_RecordingAnimationClip">
+            <summary>A reference to the AnimationClip this component is currently recording to.</summary>
+        </member>
+        <member name="F:AdaptiveHands.Editor.Animation.HumanoidAnimationExporter.m_RecordingLeftHand">
+            <summary>Tracks whether or not the left hand is being recorded.</summary>
+        </member>
+        <member name="F:AdaptiveHands.Editor.Animation.HumanoidAnimationExporter.m_RecordingRightHand">
+            <summary>Tracks whether or not the right hand is being recorded.</summary>
+        </member>
+        <member name="F:AdaptiveHands.Editor.Animation.HumanoidAnimationExporter.m_RecordingDataLeftHand">
+            <summary>A dictionary containing the value data for the current left hand animation recording. This holds the muscle value of the muscle with the given string name (key).</summary>
+        </member>
+        <member name="F:AdaptiveHands.Editor.Animation.HumanoidAnimationExporter.m_RecordingDataRightHand">
+            <summary>A dictionary containing the value data for the current right hand animation recording. This holds the muscle value of the muscle with the given string name (key).</summary>
+        </member>
+        <member name="M:AdaptiveHands.Editor.Animation.HumanoidAnimationExporter.GenerateAnimationClip(System.String,UnityEngine.Animator,System.Boolean,System.Boolean)">
+            <summary>A method that generates a humanoid animation clip for the current hand position(s) as a 1 frame snapshot.</summary>
+            <param name="pClipName"></param>
+            <param name="pAnimator">The humanoid Animator that is being recorded.</param>
+            <param name="pRecordLeftHand">Should the left hand be recorded?</param>
+            <param name="pRecordRightHand">Should he right hand be recorded?</param>
+            <returns>A humanoid AnimationClip with the hand positions provided as arguments.</returns>
+        </member>
+        <member name="M:AdaptiveHands.Editor.Animation.HumanoidAnimationExporter.StartRecording(System.String,UnityEngine.Animator,System.Boolean,System.Boolean)">
+            <summary>Starts recording an animation clip with the specified name involving the specified 'record objects'.</summary>
+            <param name="pClipName">The name of the clip being recorded.</param>
+            <param name="pAnimator">The humanoid Animator that is being recorded.</param>
+            <param name="pRecordLeftHand">Should the left hand be recorded?</param>
+            <param name="pRecordRightHand">Should he right hand be recorded?</param>
+        </member>
+        <member name="M:AdaptiveHands.Editor.Animation.HumanoidAnimationExporter.FinishRecording">
+            <summary>Stops recording the current animation clip and returns it.</summary>
+        </member>
+        <member name="M:AdaptiveHands.Editor.Animation.HumanoidAnimationExporter.OnRecordFrame">
+            <summary>A private callback that is called each frame while recording an animation.</summary>
+        </member>
+        <member name="M:AdaptiveHands.Editor.Animation.HumanoidAnimationExporter.RecordLeftHandFrame(System.String,System.Single)">
+            <summary>Records a left hand muscle for a frame.</summary>
+            <param name="pMuscleName"></param>
+            <param name="pMuscleValue"></param>
+        </member>
+        <member name="M:AdaptiveHands.Editor.Animation.HumanoidAnimationExporter.RecordRightHandFrame(System.String,System.Single)">
+            <summary>Records a right hand muscle for a frame.</summary>
+            <param name="pMuscleName"></param>
+            <param name="pMuscleValue"></param>
+        </member>
+        <member name="T:AdaptiveHands.Editor.Animation.HumanoidAnimationExporterWindow">
+            <summary>
+            A tool designed to make it easy to export humanoid hand animations.
+            </summary>
+            Author: Mathew Aloisio
+        </member>
+        <member name="F:AdaptiveHands.Editor.Animation.HumanoidAnimationExporterWindow.m_ExportClipName">
+            <summary>The name to use for exported animation clips.</summary>
+        </member>
+        <member name="E:AdaptiveHands.Editor.Animation.HumanoidAnimationExporterWindow.Initialized">
+            <summary>An event that is invoked when the HumanoidAnimationExporterWindow is intialized.</summary>
+        </member>
+        <member name="F:AdaptiveHands.Editor.Animation.HumanoidAnimationExporterWindow.m_ScrollPosition">
+            <summary>The scroll position for the editor window.</summary>
+        </member>
+        <member name="F:AdaptiveHands.Editor.Animation.HumanoidAnimationExporterWindow.m_SerializedObject">
+            <summary>The SerializedObject representation of this editor window.</summary>
+        </member>
+        <member name="T:AdaptiveHands.Editor.HumanPropertyMap">
+            <summary>
+            A simple public static class that provides the functionality required to translate between HumanBodybones and 'propertyNames' for AnimationClips.
+            </summary>
+            Author: Mathew Aloisio
+        </member>
+        <member name="F:AdaptiveHands.Editor.HumanPropertyMap.LEFT_HAND_PROPERTY_MAP">
+            <summary>A map that translates between muscle names and 'Animation Clip' propertyNames for the left hand.</summary>
+        </member>
+        <member name="F:AdaptiveHands.Editor.HumanPropertyMap.RIGHT_HAND_PROPERTY_MAP">
+            <summary>A map that translates between muscle names and 'Animation Clip' propertyNames for the right hand.</summary>
+        </member>
+        <member name="T:AdaptiveHands.Editor.BendStateSwapperEditor">
+            <summary>
+            A custom inspector for the BendStateSwapper component.
+            </summary>
+            Author: Mathew Aloisio
+        </member>
+        <member name="M:AdaptiveHands.Editor.BendStateSwapperEditor.SaveNewState(AdaptiveHands.BendStates.BendStateSwapper,System.String)">
+            <summary>Saves a new state by name while also registering an undo entry.</summary>
+            <param name="pState"></param>
+            <param name="pStateName"></param>
+        </member>
+        <member name="M:AdaptiveHands.Editor.BendStateSwapperEditor.SaveDefaultNoBendState(AdaptiveHands.BendStates.BendStateSwapper)">
+            <summary>Saves the current hand state as the default 'no bend' state info.</summary>
+            <param name="pState"></param>
+        </member>
+        <member name="M:AdaptiveHands.Editor.BendStateSwapperEditor.SaveNoBendState(AdaptiveHands.BendStates.BendStateSwapper,System.String)">
+            <summary>Saves a state by name while also registering an undo entry.</summary>
+            <param name="pState"></param>
+            <param name="pStateName"></param>
+        </member>
+        <member name="M:AdaptiveHands.Editor.BendStateSwapperEditor.SaveNoBendStateByIndex(AdaptiveHands.BendStates.BendStateSwapper,System.Int32)">
+            <summary>Saves 'no bend' data for a state by index while also registering an undo entry.</summary>
+            <param name="pState"></param>
+            <param name="pIndex"></param>
+        </member>
+        <member name="M:AdaptiveHands.Editor.BendStateSwapperEditor.SaveDefaultFullBendState(AdaptiveHands.BendStates.BendStateSwapper)">
+            <summary>Saves the current hand state as the default 'full bend' state info.</summary>
+            <param name="pState"></param>
+        </member>
+        <member name="M:AdaptiveHands.Editor.BendStateSwapperEditor.SaveFullBendState(AdaptiveHands.BendStates.BendStateSwapper,System.String)">
+            <summary>Saves a state by name while also registering an undo entry.</summary>
+            <param name="pState"></param>
+            <param name="pStateName"></param>
+        </member>
+        <member name="M:AdaptiveHands.Editor.BendStateSwapperEditor.SaveFullBendStateByIndex(AdaptiveHands.BendStates.BendStateSwapper,System.Int32)">
+            <summary>Saves a state by index while also registering an undo entry.</summary>
+            <param name="pState"></param>
+            <param name="pIndex"></param>
+        </member>
+        <member name="M:AdaptiveHands.Editor.BendStateSwapperEditor.LoadStateByIndex(AdaptiveHands.BendStates.BendStateSwapper,System.Int32)">
+            <summary>Loads a state by index while also registering an undo entry.</summary>
+            <param name="pState"></param>
+            <param name="pIndex"></param>
+        </member>
+        <member name="M:AdaptiveHands.Editor.BendStateSwapperEditor.DeleteStateByIndex(AdaptiveHands.BendStates.BendStateSwapper,System.Int32)">
+            <summary>Deletes a state by index while also registering an undo entry.</summary>
+            <param name="pState"></param>
+            <param name="pIndex"></param>
+        </member>
+        <member name="T:AdaptiveHands.Editor.EditModeHandSimulator">
+            <summary>
+            A static class that allows a KinematicHand to be simulated in edit mode.
+            </summary>
+            Author: Mathew Aloisio
+        </member>
+        <member name="F:AdaptiveHands.Editor.EditModeHandSimulator.simulatedHands">
+            <summary>A dictionary of KinematicHand components to simulate.</summary>
+        </member>
+        <member name="T:AdaptiveHands.Editor.KinematicHandEditor">
+            <summary>
+            A custom inspector for KinematicHands.
+            </summary>
+            Author: Mathew Aloisio
+        </member>
+        <member name="F:AdaptiveHands.Editor.KinematicHandEditor.FingerBoneHandle.bone">
+            <summary>A reference to the KinematicFinger.Bone the handle is for.</summary>
+        </member>
+        <member name="F:AdaptiveHands.Editor.KinematicHandEditor.FingerBoneHandle.handle">
+            <summary>A reference to the the resizable bounds handle.</summary>
+        </member>
+        <member name="F:AdaptiveHands.Editor.KinematicHandEditor.m_FingerBendControlGroupEnabled">
+            <summary>Is the finger bend control dropdown enabled?</summary>
+        </member>
+        <member name="F:AdaptiveHands.Editor.KinematicHandEditor.m_UndoHandleGroupIndex">
+            <summary>The index for the undo handle group or -1 if one needs to be generated.</summary>
+        </member>
+        <member name="F:AdaptiveHands.Editor.KinematicHandEditor.m_FingerBoneHandle">
+            <summary>The FingerBoneHandle that describes what finger bone collider is currently being edited.</summary>
+        </member>
+        <member name="F:AdaptiveHands.Editor.KinematicHandEditor.m_AllFingersSliderValue">
+            <summary>The last recorded slider value for the 'all fingers' bend slider.</summary>
+        </member>
+        <member name="F:AdaptiveHands.Editor.KinematicHandEditor.m_FingerDropdownStates">
+            <summary>A dictionary that holds the state of all KinematicFinger components associated with the relevant KinematicHand.</summary>
+        </member>
+        <member name="M:AdaptiveHands.Editor.KinematicHandEditor.SetAllFingerBend(AdaptiveHands.KinematicHand,System.Single)">
+            <summary>Invokes pHand.SetAllFingerBend(pBend) and performs other editor-related tasks.</summary>
+            <param name="pHand"></param>
+            <param name="pBend"></param>
+        </member>
+        <member name="M:AdaptiveHands.Editor.KinematicHandEditor.SetFingerBend(AdaptiveHands.KinematicHand,AdaptiveHands.KinematicFinger,System.Single)">
+            <summary>Invokes pHand.SetFingerBend(pFinger, pBend) and performs other editor-related tasks.</summary>
+            <param name="pHand"></param>
+            <param name="pFinger"></param>
+            <param name="pBend"></param>
+        </member>
+        <member name="M:AdaptiveHands.Editor.KinematicHandEditor.StoreOpenedHandPosition(AdaptiveHands.KinematicHand)">
+            <summary>Stores the finger positions and rotations for the opened hand position.</summary>
+            <param name="pHand"></param>
+        </member>
+        <member name="M:AdaptiveHands.Editor.KinematicHandEditor.StoreClosedHandPosition(AdaptiveHands.KinematicHand)">
+            <summary>Stores the finger positions and rotations for the closed hand position.</summary>
+            <param name="pHand"></param>
+        </member>
+        <member name="M:AdaptiveHands.Editor.KinematicHandEditor.StartEditingFingerBone(AdaptiveHands.KinematicFinger.Bone)">
+            <summary>Starts editing the specified finger bone using handles.</summary>
+            <param name="pBone"></param>
+        </member>
+        <member name="M:AdaptiveHands.Editor.KinematicHandEditor.StopEditingFingerBone">
+            <summary>Stops editing any finger bone and cleans up the handles.</summary>
+        </member>
+        <member name="M:AdaptiveHands.Editor.KinematicHandEditor.DrawPoseEditor(System.Boolean)">
+            <summary>
+            Draws the pose editor for the KinematicHand.
+            This may only be invoked in editor GUI methods.
+            </summary>
+            <param name="pShowFingerBoneEdit">Should the bone collider edit buttons be drawn? (True - yes | False - no)</param>
+        </member>
+        <member name="M:AdaptiveHands.Editor.KinematicHandEditor.DrawFingerBoneColliderHandle">
+            <summary>
+            Draws the modifiable handle for the finger bone collider.
+            NOTE: This must be called inside of an 'OnSceneGUI' method or any method where Camera.current is non-null.
+            </summary>
+        </member>
+        <member name="T:AdaptiveHands.Editor.HandPoserEditor">
+            <summary>
+            A custom inspector for the HandPoser component.
+            </summary>
+            Author: Mathew Aloisio
+        </member>
+        <member name="F:AdaptiveHands.Editor.HandPoserEditor.m_HandEditor">
+            <summary>The HandEditor being drawn.</summary>
+        </member>
+        <member name="M:AdaptiveHands.Editor.HandPoserEditor.SavePose(AdaptiveHands.Poser.HandPoser,System.String)">
+            <summary>Saves a pose by name while also registering an undo entry.</summary>
+            <param name="pPoser"></param>
+            <param name="pPoseName"></param>
+        </member>
+        <member name="M:AdaptiveHands.Editor.HandPoserEditor.SavePoseByIndex(AdaptiveHands.Poser.HandPoser,System.Int32)">
+            <summary>Saves a pose by index while also registering an undo entry.</summary>
+            <param name="pPoser"></param>
+            <param name="pIndex"></param>
+        </member>
+        <member name="M:AdaptiveHands.Editor.HandPoserEditor.LoadPoseByIndex(AdaptiveHands.Poser.HandPoser,System.Int32)">
+            <summary>Loads a pose by index while also registering an undo entry.</summary>
+            <param name="pPoser"></param>
+            <param name="pIndex"></param>
+        </member>
+        <member name="M:AdaptiveHands.Editor.HandPoserEditor.DeletePoseByIndex(AdaptiveHands.Poser.HandPoser,System.Int32)">
+            <summary>Deletes a pose by index while also registering an undo entry.</summary>
+            <param name="pPoser"></param>
+            <param name="pIndex"></param>
+        </member>
+        <member name="T:AdaptiveHands.Editor.EditorSymmetryUtility">
+            <summary>A public static class that provides extra runtime methods relating to symmetry.</summary>
+            Author: Mathew Aloisio
+        </member>
+        <member name="F:AdaptiveHands.Editor.EditorSymmetryUtility.SymmetrySide.None">
+            <summary>Belongs to no symmetry side.</summary>
+        </member>
+        <member name="F:AdaptiveHands.Editor.EditorSymmetryUtility.SymmetrySide.Left">
+            <summary>Belongs to the left side.</summary>
+        </member>
+        <member name="F:AdaptiveHands.Editor.EditorSymmetryUtility.SymmetrySide.Right">
+            <summary>Belongs to the right side.</summary>
+        </member>
+        <member name="F:AdaptiveHands.Editor.EditorSymmetryUtility.ReplaceMode.Replace">
+            <summary>Always replace.</summary>
+        </member>
+        <member name="F:AdaptiveHands.Editor.EditorSymmetryUtility.ReplaceMode.StartsWith">
+            <summary>Only replace if text starts with.</summary>
+        </member>
+        <member name="F:AdaptiveHands.Editor.EditorSymmetryUtility.ReplaceMode.EndsWith">
+            <summary>Only replace if text ends with.</summary>
+        </member>
+        <member name="F:AdaptiveHands.Editor.EditorSymmetryUtility.ReplacementEntry.leftText">
+            <summary>The left side symmetry identifier.</summary>
+        </member>
+        <member name="F:AdaptiveHands.Editor.EditorSymmetryUtility.ReplacementEntry.rightText">
+            <summary>The right side symmetry identifier.</summary>
+        </member>
+        <member name="F:AdaptiveHands.Editor.EditorSymmetryUtility.ReplacementEntry.replaceMode">
+            <summary>The ReplaceMode to use when replacing text.</summary>
+        </member>
+        <member name="F:AdaptiveHands.Editor.EditorSymmetryUtility.SYMMETRY_JOIN_TEXT">
+            <summary>The string to join symmetry text parts with.</summary>
+        </member>
+        <member name="F:AdaptiveHands.Editor.EditorSymmetryUtility.SYMMETRY_DELIMITERS">
+            <summary>An array of symmetry text delimiters. Used to determine where to look for 'StartsWith' and 'EndsWith' replacement entries.</summary>
+        </member>
+        <member name="F:AdaptiveHands.Editor.EditorSymmetryUtility.SYMMETRY_TEXT_REPLACEMENT_LOOKUP">
+            <summary>A list of ReplacementEntrys of symmetry text.</summary>
+        </member>
+        <member name="M:AdaptiveHands.Editor.EditorSymmetryUtility.FindSymmetryicalObject(UnityEngine.GameObject,UnityEngine.GameObject,UnityEngine.GameObject)">
+            <summary>Finds and returns a GameObject that is a (grand)child of pDestinationParent but is symmetrical to pObject which is a (grand)child of pSourceParent. Returns null if none found.</summary>
+            <param name="pObject"></param>
+            <param name="pSourceParent"></param>
+            <param name="pDestinationParent"></param>
+            <returns>A GameObject that is a (grand)child of pDestinationParent that is symmetrical to pObject, or null if none was found.</returns>
+        </member>
+        <member name="M:AdaptiveHands.Editor.EditorSymmetryUtility.FlipSymmetry(System.String,AdaptiveHands.Editor.EditorSymmetryUtility.SymmetrySide)">
+            <summary>
+            Given a string as input, pInput, flips any possible symmetry identifiers like 'l' 'r' 'left' and 'right' to the opposite side.
+            </summary>
+            <param name="pInput"></param>
+            <param name="pOldSymmetry">The symmetry side being flipped from.</param>
+            <returns></returns>
+        </member>
+        <member name="M:AdaptiveHands.Editor.EditorSymmetryUtility.GetSymmetrySide(UnityEngine.GameObject)">
+            <summary>Returns what SymmetrySide a GameObject belongs to or SymmetrySide.None if it cannot be determined.</summary>
+            <param name="pGameObject"></param>
+            <returns>The SymmetrySide pGameObject belongs to.</returns>
+        </member>
+        <member name="T:AdaptiveHands.Editor.HandSymmetryToolWindow">
+            <summary>
+            A window where adaptive hand components and settings can be copied from a symmetrical hand.
+            </summary>
+            Author: Mathew Aloisio
+        </member>
+        <member name="F:AdaptiveHands.Editor.HandSymmetryToolWindow.sourceHand">
+            <summary>The source KinematicHand to copy from.</summary>
+        </member>
+        <member name="F:AdaptiveHands.Editor.HandSymmetryToolWindow.destinationHand">
+            <summary>The destination KinematicHand to copy to.</summary>
+        </member>
+        <member name="F:AdaptiveHands.Editor.HandSymmetryToolWindow.flipColliderUp">
+            <summary>Should the collider up direction be flipped for the destination hands finger bones?</summary>
+        </member>
+        <member name="F:AdaptiveHands.Editor.HandSymmetryToolWindow.flipColliderForward">
+            <summary>Should the collider forward direction be flipped for the destination hands finger bones?</summary>
+        </member>
+        <member name="E:AdaptiveHands.Editor.HandSymmetryToolWindow.Initialized">
+            <summary>A C# delegate event that is invoked when the HandSymmetryToolWindow is intialized.</summary>
+        </member>
+        <member name="F:AdaptiveHands.Editor.HandSymmetryToolWindow.m_ScrollPosition">
+            <summary>The scroll position for the editor window.</summary>
+        </member>
+        <member name="M:AdaptiveHands.Editor.HandSymmetryToolWindow.SymmetrizeHands(AdaptiveHands.KinematicHand,AdaptiveHands.KinematicHand,System.Boolean,System.Boolean)">
+            <summary>Symmetrizes pSourceHand and pDestinationHand by copying all relevant data from pSourceHand to pDestinationHand.</summary>
+            <param name="pSourceHand"></param>
+            <param name="pDestinationHand"></param>
+            <param name="pFlipColliderUp">Should the finger bones collider up direction be flipped?</param>
+            <param name="pFlipColliderForward">Should the finger bones collider forward direction be flipped?</param>
+        </member>
+        <member name="T:AdaptiveHands.Editor.PoseSymmetryToolWindow">
+            <summary>
+            A window where adaptive hand components and settings from HnadPoser or BendStateSwapper components can be copied from a symmetrical hand.
+            </summary>
+            Author: Mathew Aloisio
+        </member>
+        <member name="F:AdaptiveHands.Editor.PoseSymmetryToolWindow.m_GeneralSettingsGroupEnabled">
+            <summary>Is the general settings dropdown enabled?</summary>
+        </member>
+        <member name="F:AdaptiveHands.Editor.PoseSymmetryToolWindow.sourceHandPoser">
+            <summary>The source HandPoser to copy from.</summary>
+        </member>
+        <member name="F:AdaptiveHands.Editor.PoseSymmetryToolWindow.destinationHandPoser">
+            <summary>The destination KinematicHand to copy to.</summary>
+        </member>
+        <member name="F:AdaptiveHands.Editor.PoseSymmetryToolWindow.m_HandPoserSymmetryGroupEnabled">
+            <summary>Is the hand poser symmetry dropdown enabled?</summary>
+        </member>
+        <member name="F:AdaptiveHands.Editor.PoseSymmetryToolWindow.sourceBendSwapper">
+            <summary>The source BendStateSwapper to copy from.</summary>
+        </member>
+        <member name="F:AdaptiveHands.Editor.PoseSymmetryToolWindow.destinationBendSwapper">
+            <summary>The destination KinematicHand to copy to.</summary>
+        </member>
+        <member name="F:AdaptiveHands.Editor.PoseSymmetryToolWindow.m_BendSwapperSymmetryGroupEnabled">
+            <summary>Is the bend state swapper symmetry dropdown enabled?</summary>
+        </member>
+        <member name="E:AdaptiveHands.Editor.PoseSymmetryToolWindow.Initialized">
+            <summary>A C# delegate event that is invoked when the PoseSymmetryToolWindow is intialized.</summary>
+        </member>
+        <member name="F:AdaptiveHands.Editor.PoseSymmetryToolWindow.m_ScrollPosition">
+            <summary>The scroll position for the editor window.</summary>
+        </member>
+        <member name="M:AdaptiveHands.Editor.PoseSymmetryToolWindow.SymmetrizeHandPosers(AdaptiveHands.Poser.HandPoser,AdaptiveHands.Poser.HandPoser)">
+            <summary>Symmetrizes pSourcePoser and pDestinationPoser by copying all relevant data from pSourcePoser to pDestinationPoser.</summary>
+            <param name="pSourcePoser"></param>
+            <param name="pDestinationPoser"></param>
+        </member>
+        <member name="M:AdaptiveHands.Editor.PoseSymmetryToolWindow.SymmetrizeBendStateSwappers(AdaptiveHands.BendStates.BendStateSwapper,AdaptiveHands.BendStates.BendStateSwapper)">
+            <summary>Symmetrizes pSourceSwapper and pDestinationSwapper by copying all relevant data from pSourceSwapper to pDestinationSwapper.</summary>
+            <param name="pSourceSwapper"></param>
+            <param name="pDestinationSwapper"></param>
+        </member>
+        <member name="M:AdaptiveHands.Editor.PoseSymmetryToolWindow.FlipHandPose(AdaptiveHands.Poser.HandPose@,UnityEngine.GameObject,UnityEngine.GameObject)">
+            <summary>Performs any required 'flipping' on the reference given for a hand pose, pPose.</summary>
+            <param name="pPose"></param>
+            <param name="pSourceParent"></param>
+            <param name="pDestinationParent"></param>
+        </member>
+        <member name="M:AdaptiveHands.Editor.PoseSymmetryToolWindow.FlipBendState(AdaptiveHands.BendStates.BendState@,UnityEngine.GameObject,UnityEngine.GameObject)">
+            <summary>Performs any required 'flipping' on the reference given for a bend state, pBendState.</summary>
+            <param name="pBendState"></param>
+            <param name="pSourceParent"></param>
+            <param name="pDestinationParent"></param>
+        </member>
+        <member name="T:AdaptiveHands.Editor.UndoTracker">
+            <summary>
+            A public static class that tracks editor undo groups that can not be easily grouped.
+            </summary>
+            Author: Mathew ALoisio
+        </member>
+        <member name="P:AdaptiveHands.Editor.UndoTracker.IsHandleManipulateUndoGroup">
+            <summary>Returns true if the current undo group is a handle manipulate bone collider group, otherwise false.</summary>
+        </member>
+        <member name="M:AdaptiveHands.Editor.UndoTracker.HandleManipulateUndoGroup">
+            <summary>Starts a new undo group if not in a handle manipulate undo group already.</summary>
+        </member>
+        <member name="M:AdaptiveHands.Editor.UndoTracker.OnUndoRedoPerformed">
+            <summary>Invoked whenever an undo or redo operation is performed.</summary>
+        </member>
+    </members>
+</doc>

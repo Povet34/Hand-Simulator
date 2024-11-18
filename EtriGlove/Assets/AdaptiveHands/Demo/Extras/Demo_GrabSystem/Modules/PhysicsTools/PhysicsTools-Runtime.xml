@@ -1,0 +1,382 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>PhysicsTools-Runtime</name>
+    </assembly>
+    <members>
+        <member name="T:PhysicsTools.Collisions.CollisionIgnorer">
+            <summary>
+            A simple class that allows provides the neccesary methods and helpers to temporarily ignore collisions between a set of Colliders and a Collider.
+            </summary>
+            Author: Mathew Aloisio
+        </member>
+        <member name="T:PhysicsTools.Collisions.CollisionIgnorer.Entry">
+            <summary>An entry for a temporarily ignore collision rule.</summary>
+        </member>
+        <member name="F:PhysicsTools.Collisions.CollisionIgnorer.Entry.collider">
+            <summary>The Collider associated with the entry.</summary>
+        </member>
+        <member name="F:PhysicsTools.Collisions.CollisionIgnorer.Entry.expireTime">
+            <summary>The time the entry is set to expire.</summary>
+        </member>
+        <member name="F:PhysicsTools.Collisions.CollisionIgnorer.m_Colliders">
+            <summary>The list of colliders that are being managed by this class instance.</summary>
+        </member>
+        <member name="F:PhysicsTools.Collisions.CollisionIgnorer.m_TempIgnoredCollisions">
+            <summary>A list of collision temporarily ignored by this component.</summary>
+        </member>
+        <member name="M:PhysicsTools.Collisions.CollisionIgnorer.#ctor(System.Collections.Generic.List{UnityEngine.Collider})">
+            <summary>Creates a CollisionIgnorer that provides easy methods for temporarily ignoring collisions between a collider and pColliders.</summary>
+            <param name="pColliders">A List of colliders whose collision with other colliders is being cnotrolled by this class instance.</param>
+        </member>
+        <member name="M:PhysicsTools.Collisions.CollisionIgnorer.Update">
+            <summary>Updates the collision ignorer allowing it to timeout any temporarily ignored collisions.</summary>
+        </member>
+        <member name="M:PhysicsTools.Collisions.CollisionIgnorer.IgnoreCollider(UnityEngine.Collider)">
+            <summary>Ignore collisions between all colliders associated with this component and pCollider indefinitely.</summary>
+            <param name="pCollider"></param>
+        </member>
+        <member name="M:PhysicsTools.Collisions.CollisionIgnorer.IgnoreColliders(System.Collections.Generic.IEnumerable{UnityEngine.Collider})">
+            <summary>Ignore collisions between all colliders associated with this component and all colliders in the pColliders enumerable indefinitely.</summary>
+            <param name="pColliders"></param>
+        </member>
+        <member name="M:PhysicsTools.Collisions.CollisionIgnorer.IgnoreColliderFor(UnityEngine.Collider,System.Single)">
+            <summary>Ignores collisions between all colliders associated with this component and pCollider for pSeconds.</summary>
+            <param name="pCollider"></param>
+            <param name="pSeconds"></param>
+        </member>
+        <member name="M:PhysicsTools.Collisions.CollisionIgnorer.UnignoreColliderIn(UnityEngine.Collider,System.Single)">
+            <summary>Unignores collisions between all colliders associated with this component and pCollider in pSeconds.</summary>
+            <param name="pCollider"></param>
+            <param name="pSeconds"></param>
+        </member>
+        <member name="M:PhysicsTools.Collisions.CollisionIgnorer.UnignoreCollider(UnityEngine.Collider)">
+            <summary>Unignores collisions between all colliders associated with this component and pCollider.</summary>
+            <param name="pCollider"></param>
+        </member>
+        <member name="M:PhysicsTools.Collisions.CollisionIgnorer.UnignoreColliders(System.Collections.Generic.IEnumerable{UnityEngine.Collider})">
+            <summary>Unignores collisions between all colliders associated with this component and all pColliders in the enumerable.</summary>
+            <param name="pColliders"></param>
+        </member>
+        <member name="M:PhysicsTools.Collisions.CollisionIgnorer.UnignoreEntry(PhysicsTools.Collisions.CollisionIgnorer.Entry)">
+            <summary>Undoes the collision ignore entry.</summary>
+            <param name="pEntry"></param>
+        </member>
+        <member name="M:PhysicsTools.Collisions.CollisionIgnorer.UnignoreIndex(System.Int32)">
+            <summary>Undoes the ignore collision registered in entry index pIndex.</summary>
+            <param name="pIndex"></param>
+        </member>
+        <member name="M:PhysicsTools.Collisions.CollisionIgnorer.UnignoreAll">
+            <summary>Undo all temporarily ignored collisions.</summary>
+        </member>
+        <member name="M:PhysicsTools.Collisions.CollisionIgnorer.SetIgnoreCollisions(UnityEngine.Collider,System.Boolean)">
+            <summary>Directly controls invokations to Phyiscs.IgnoreCollisions.</summary>
+            <param name="pCollider"></param>
+            <param name="pIgnore"></param>
+        </member>
+        <member name="M:PhysicsTools.Collisions.CollisionIgnorer.RegisterTempIgnoredCollider(UnityEngine.Collider,System.Single)">
+            <summary>Registers a temporarily ignored collider that will be unignored in pSeconds.</summary>
+            <param name="pCollider"></param>
+            <param name="pSeconds"></param>
+        </member>
+        <member name="M:PhysicsTools.Collisions.CollisionIgnorer.IgnoreRigidbody(UnityEngine.Rigidbody)">
+            <summary>Ignores collisions between all colliders associated with this component and the Rigidbody, pRigidbody, indefinitely.</summary>
+            <param name="pRigidbody"></param>
+        </member>
+        <member name="M:PhysicsTools.Collisions.CollisionIgnorer.IgnoreRigidbodyFor(UnityEngine.Rigidbody,System.Single)">
+            <summary>Ignores collisions between all colliders associated with this component and the Rigidbody, pRigidbody, for pSeconds.</summary>
+            <param name="pRigidbody"></param>
+            <param name="pSeconds">The number of seconds to ignore collisions for.</param>
+        </member>
+        <member name="M:PhysicsTools.Collisions.CollisionIgnorer.UnignoreRigidbodyIn(UnityEngine.Rigidbody,System.Single)">
+            <summary>Unignores collisions between all colliders associated with this component and the Rigidbody, pRigidbody, in pSeconds.</summary>
+            <param name="pRigidbody"></param>
+            <param name="pSeconds">The number of seconds to unignore collisions in.</param>
+        </member>
+        <member name="M:PhysicsTools.Collisions.CollisionIgnorer.UnignoreRigidbody(UnityEngine.Rigidbody)">
+            <summary>Unggnores collisions between all colliders associated with this component and the Rigidbody, pRigidbody.</summary>
+            <param name="pRigidbody"></param>
+        </member>
+        <member name="T:PhysicsTools.Collisions.CollisionTracker">
+            <summary>
+            A simple component that keeps track of collisions using OnCollisionEnter and OnCollisionExit.
+            </summary>
+            Author: Mathew Aloisio
+        </member>
+        <member name="P:PhysicsTools.Collisions.CollisionTracker.CollidingWithCount">
+            <summary>Returns the number of Colliders currently colliding with the relevant Rigidbody.</summary>
+        </member>
+        <member name="F:PhysicsTools.Collisions.CollisionTracker.m_CollidingWith">
+            <summary>A list of Colliders that are colliding with the relevant Rigidbody.</summary>
+        </member>
+        <member name="M:PhysicsTools.Collisions.CollisionTracker.IsCollidingWith(UnityEngine.Collider)">
+            <summary>Returns true when the tracker is tracking a collision with the specified collider, pCollider, otherwise false.</summary>
+            <param name="pCollider"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PhysicsTools.Collisions.CollisionTracker.IsCollidingWith(UnityEngine.Rigidbody,System.Boolean)">
+            <summary>Returns true if the tracker is colliding with any colliders of pRigidbody, otherwise false.</summary>
+            <param name="pRigidbody"></param>
+            <param name="pAllowNestedRigidbodies">Should nested Rigidbody colliders be included?</param>
+            <returns>true if the tracker is colliding with any colliders of pRigidbody, otherwise false.</returns>
+        </member>
+        <member name="M:PhysicsTools.Collisions.CollisionTracker.GetCollidingWith(System.Int32)">
+            <summary>Returns the Collider in the given 'colliding with' index.</summary>
+            <param name="pIndex"></param>
+            <returns>The collider in the given 'colliding with' index.</returns>
+        </member>
+        <member name="T:PhysicsTools.Delegates.ActionRef`1">
+            <summary>A simple delegate for events where an argument is passed by reference.</summary>
+            <typeparam name="T">The type of the passed reference.</typeparam>
+            <param name="pItem">The reference that was passed.</param>
+        </member>
+        <member name="T:PhysicsTools.Delegates.ActionRef`2">
+            <summary>A simple delegate for events where an argument is passed by reference.</summary>
+            <typeparam name="VALUE_ONE">The type of the fist passed value.</typeparam>
+            <typeparam name="T">The type of the passed reference.</typeparam>
+            <param name="pValueOne">The first value that was passed.</param>
+            <param name="pItem">The reference that was passed.</param>
+        </member>
+        <member name="T:PhysicsTools.Delegates.ActionRef`3">
+            <summary>A simple delegate for events where an argument is passed by reference.</summary>
+            <typeparam name="VALUE_ONE">The type of the first passed value.</typeparam>
+            <typeparam name="VALUE_TWO">The type of the second passed value.</typeparam>
+            <typeparam name="T">The type of the passed reference.</typeparam>
+            <param name="pValueOne">The first value that was passed.</param>
+            <param name="pValueTwo">The second value that was passed.</param>
+            <param name="pItem">The reference that was passed.</param>
+        </member>
+        <member name="T:PhysicsTools.Delegates.ActionRef`4">
+            <summary>A simple delegate for events where an argument is passed by reference.</summary>
+            <typeparam name="VALUE_ONE">The type of the first passed value.</typeparam>
+            <typeparam name="VALUE_TWO">The type of the second passed value.</typeparam>
+            <typeparam name="VALUE_THREE">The type of the third passed value.</typeparam>
+            <typeparam name="T">The type of the passed reference.</typeparam>
+            <param name="pValueOne">The first value that was passed.</param>
+            <param name="pValueTwo">The second value that was passed.</param>
+            <param name="pValueThree">The third value that was passed.</param>
+            <param name="pItem">The reference that was passed.</param>
+        </member>
+        <member name="T:PhysicsTools.Rigidbodies.ForceFollowTransform">
+            <summary>
+            A component that uses forces to make a Rigidbody follow a Transform.
+            </summary>
+            Author: Mathew Aloisio
+        </member>
+        <member name="F:PhysicsTools.Rigidbodies.ForceFollowTransform.MaxDistanceExceedMode.None">
+            <summary>Do nothing when the max distance is exceeded.</summary>
+        </member>
+        <member name="F:PhysicsTools.Rigidbodies.ForceFollowTransform.MaxDistanceExceedMode.SnapToFollow">
+            <summary>Snap to the follow Transform when the max distance is exceeded.</summary>
+        </member>
+        <member name="P:PhysicsTools.Rigidbodies.ForceFollowTransform.Rigidbody">
+            <summary>A reference to the Rigidbody associated with this component.</summary>
+        </member>
+        <member name="P:PhysicsTools.Rigidbodies.ForceFollowTransform.FollowPosition">
+            <summary>Returns the world space position being targetted.</summary>
+        </member>
+        <member name="P:PhysicsTools.Rigidbodies.ForceFollowTransform.FollowRotation">
+            <summary>Returns the world space rotation being targetted.</summary>
+        </member>
+        <member name="P:PhysicsTools.Rigidbodies.ForceFollowTransform.FollowDistance">
+            <summary>
+            Returns the distance between followTransform.position and transform.position.
+            This always returns the true, unspoofed value (the calculated follow distance) ignoring 'OverrideFollowDistanceDelegate'.
+            </summary>
+        </member>
+        <member name="P:PhysicsTools.Rigidbodies.ForceFollowTransform.DistanceFactor">
+            <summary>Returns the unclamped distance factor (FollowDistance / maxFollowDistance) for this component.</summary>
+        </member>
+        <member name="P:PhysicsTools.Rigidbodies.ForceFollowTransform.LastNonKinematicTime">
+            <summary>The last time that this RigidbodyFollowTransform was non-kinematic.</summary>
+        </member>
+        <member name="E:PhysicsTools.Rigidbodies.ForceFollowTransform.OverrideFollowDistanceDelegate">
+            <summary>
+            A delegate event that allows the 'FollowDistance' for this component to be spoofed.
+            Arg0: ref float - A reference to the float that is the 'follow distance' that may be spoofed.
+            </summary>
+        </member>
+        <member name="E:PhysicsTools.Rigidbodies.ForceFollowTransform.SkipMoveDelegate">
+            <summary>
+            A delegate event that allows a move to be skipped by an event listener flipping the boolean to true.
+            Arg0: ref bool - Skip the move? If true skip, otherwise don't.
+            </summary>
+        </member>
+        <member name="E:PhysicsTools.Rigidbodies.ForceFollowTransform.SkipRotateDelegate">
+            <summary>
+            A delegate event that allows a rotate to be skipped by an event listener flipping the boolean to true.
+            Arg0: ref bool - Skip the rotate? If true skip, otherwise don't.
+            </summary>
+        </member>
+        <member name="F:PhysicsTools.Rigidbodies.ForceFollowTransform.m_Rigidbody">
+            <summary>The hidden backing field for this component's 'Rigidbody' property.</summary>
+        </member>
+        <member name="M:PhysicsTools.Rigidbodies.ForceFollowTransform.SetFollowTransform(UnityEngine.Transform)">
+            <summary>A public method that allows the 'followTransform' field of this component to be set. Useful for use in Unity editor events.</summary>
+            <param name="pTransform"></param>
+        </member>
+        <member name="M:PhysicsTools.Rigidbodies.ForceFollowTransform.SetMaxFollowStrength(System.Single)">
+            <summary>A public method that allows the 'maxFollowStrength' field of this component to be set. Useful for use in Unity editor events.</summary>
+            <param name="pStrength"></param>
+        </member>
+        <member name="M:PhysicsTools.Rigidbodies.ForceFollowTransform.SetMaxFollowTorque(System.Single)">
+            <summary>A public method that allows the 'maxFollowTorque' field of this component to be set. Useful for use in Unity editor events.</summary>
+            <param name="pTorque"></param>
+        </member>
+        <member name="M:PhysicsTools.Rigidbodies.ForceFollowTransform.SetMaxAngularVelocity(System.Single)">
+            <summary>A public method that allows the 'maxAngularVelocity' field of this component to be set. Useful for use in Unity editor events.</summary>
+            <param name="pMagnitude"></param>
+        </member>
+        <member name="M:PhysicsTools.Rigidbodies.ForceFollowTransform.SetMaxFollowDistance(System.Single)">
+            <summary>A public method that allows the 'maxFollowDistance' field of this component to be set. Useful for use in Unity editor events.</summary>
+            <param name="pDistance"></param>
+        </member>
+        <member name="M:PhysicsTools.Rigidbodies.ForceFollowTransform.SetMovementEnabled(System.Boolean)">
+            <summary>A public method that allows the 'enableMovement' field of this component to be set. Useful for use in Unity editor events.</summary>
+            <param name="pEnabled"></param>
+        </member>
+        <member name="M:PhysicsTools.Rigidbodies.ForceFollowTransform.SetRotationEnabled(System.Boolean)">
+            <summary>A public method that allows the 'enableRotation' field of this component to be set. Useful for use in Unity editor events.</summary>
+            <param name="pEnabled"></param>
+        </member>
+        <member name="M:PhysicsTools.Rigidbodies.ForceFollowTransform.SetPosition(UnityEngine.Vector3)">
+            <summary>Forcefully sets the position of the Rigidbody.</summary>
+            <param name="pPosition"></param>
+        </member>
+        <member name="M:PhysicsTools.Rigidbodies.ForceFollowTransform.SetRotation(UnityEngine.Quaternion)">
+            <summary>Forcefully sets the rotaiton of the Rigidbody.</summary>
+            <param name="pRotation"></param>
+        </member>
+        <member name="M:PhysicsTools.Rigidbodies.ForceFollowTransform.SetEulerAngles(UnityEngine.Vector3)">
+            <summary>Invokes SetRotation(Quatenrion.Euler(pEulerAngles)).</summary>
+            <param name="pEulerAngles"></param>
+        </member>
+        <member name="M:PhysicsTools.Rigidbodies.ForceFollowTransform.SetIsKinematic(System.Boolean)">
+            <summary>A public method that sets the 'isKinematic' field of this component. Useful for use in Unity editor events.</summary>
+            <param name="pKinematic"></param>
+        </member>
+        <member name="M:PhysicsTools.Rigidbodies.ForceFollowTransform.NormalizeQuaternion(UnityEngine.Quaternion)">
+            <summary>Normalizes and returns the given quaternion.</summary>
+            <param name="pQ"></param>
+            <returns>the normalized version of the quaternion pQ.</returns>
+        </member>
+        <member name="T:PhysicsTools.Rigidbodies.RigidbodyCOMOverride">
+            <summary>
+            A component that can be attached to a Rigidbody that allows a specified Transform to override the Rigidbody's center of mass.
+            </summary>
+            Author: Intuitive Gaming Solutions
+        </member>
+        <member name="P:PhysicsTools.Rigidbodies.RigidbodyCOMOverride.Rigidbody">
+            <summary>A reference to the Rigidbody associated with this component.</summary>
+        </member>
+        <member name="M:PhysicsTools.Rigidbodies.RigidbodyCOMOverride.OverrideCenterOfMass">
+            <summary>Sets Rigidbody.centerOfMass equal to comTransform.position (in local space of the Rigidbody).</summary>
+        </member>
+        <member name="M:PhysicsTools.Rigidbodies.RigidbodyCOMOverride.ResetCenterOfMass">
+            <summary>resets the related Rigidbody's center of mass to the automatically calculated value.</summary>
+        </member>
+        <member name="T:PhysicsTools.Transformations.TransformVelocityTracker">
+            <summary>
+            A simple component that tracks velocity and angular velocity for a Transform that it is attached to.
+            </summary>
+            Author: Mathew Aloisio
+        </member>
+        <member name="P:PhysicsTools.Transformations.TransformVelocityTracker.PositionLastFrame">
+            <summary>The position of the Grabber's transform last frame.</summary>
+        </member>
+        <member name="P:PhysicsTools.Transformations.TransformVelocityTracker.RotationLastFrame">
+            <summary>The rotation of the Grabber's transform last frame.</summary>
+        </member>
+        <member name="P:PhysicsTools.Transformations.TransformVelocityTracker.AverageVelocity">
+            <summary>Returns the average velocity of the Transform in units per second over the last moveSampleTime seconds.</summary>
+        </member>
+        <member name="P:PhysicsTools.Transformations.TransformVelocityTracker.AverageVelocityEntries">
+            <summary>Returns the number of velocity entries used in the last 'AverageVelocity' calculation.</summary>
+        </member>
+        <member name="P:PhysicsTools.Transformations.TransformVelocityTracker.VelocityLastFrame">
+            <summary>The velocity in units per second last frame.</summary>
+        </member>
+        <member name="P:PhysicsTools.Transformations.TransformVelocityTracker.AverageRotationVelocity">
+            <summary>Returns the average rotation velocity of the Transform in units per second over the last rotateSampleTime seconds.</summary>
+        </member>
+        <member name="P:PhysicsTools.Transformations.TransformVelocityTracker.AverageRotationVelocityEntries">
+            <summary>Returns the number of rotation velocity entries used in the last 'AverageRotationVelocity' calculation.</summary>
+        </member>
+        <member name="P:PhysicsTools.Transformations.TransformVelocityTracker.RotationVelocityLastFrame">
+            <summary>The rotational velocity last frame represented as a Quaternion.</summary>
+        </member>
+        <member name="F:PhysicsTools.Transformations.TransformVelocityTracker.m_Velocities">
+            <summary>A list of VelocityTimePairs that are used to calculate average velocity.</summary>
+        </member>
+        <member name="F:PhysicsTools.Transformations.TransformVelocityTracker.m_RotationVelocities">
+            <summary>A list of RotationVelocityTimePairs that are used to calculate average rotation velocity.</summary>
+        </member>
+        <member name="M:PhysicsTools.Transformations.TransformVelocityTracker.ClearData">
+            <summary>Clears both velocity and angular velocity data.</summary>
+        </member>
+        <member name="M:PhysicsTools.Transformations.TransformVelocityTracker.ClearVelocityData">
+            <summary>Clears all velocity data.</summary>
+        </member>
+        <member name="M:PhysicsTools.Transformations.TransformVelocityTracker.ClearAngularVelocityData">
+            <summary>Clears all angular velocity data.</summary>
+        </member>
+        <member name="M:PhysicsTools.Transformations.TransformVelocityTracker.GetAverageVelocityOverSeconds(System.Single)">
+            <summary>Computes the average velocity for the TransformVelocityTracker over the last pSeconds seconds. Adding more seconds past the length of data history the component tracks has no effect.</summary>
+            <param name="pSeconds"></param>
+            <returns>the average velocity for the TransformVelocityTracker over the last pSeconds seconds.</returns>
+        </member>
+        <member name="M:PhysicsTools.Transformations.TransformVelocityTracker.GetAverageRotationVelocityOverSeconds(System.Single)">
+            <summary>Computes the aerage rotation velocity using tracked data from this component over the last pSeconds seconds. If the component does not have that many seconds of data then increasing pSeconds will have no effect.</summary>
+            <param name="pSeconds"></param>
+            <returns>the aerage rotation velocity using tracked data from this component over the last pSeconds seconds.</returns>
+        </member>
+        <member name="M:PhysicsTools.Transformations.TransformVelocityTracker.SetSampleVelocityEnabled(System.Boolean)">
+            <summary>Sets the 'sampleVelocity' field of this component. Useful for use with Unity editor events.</summary>
+            <param name="pEnabled"></param>
+        </member>
+        <member name="M:PhysicsTools.Transformations.TransformVelocityTracker.SetSampleRotationVelocityEnabled(System.Boolean)">
+            <summary>Sets the 'sampleRotationVelocity' field of this component. Useful for use with Unity editor events.</summary>
+            <param name="pEnabled"></param>
+        </member>
+        <member name="M:PhysicsTools.Transformations.TransformVelocityTracker.SetMoveSampleTime(System.Single)">
+            <summary>Sets the 'moveSampleTime' field of this component. Useful for use with Unity editor events.</summary>
+            <param name="pTime"></param>
+        </member>
+        <member name="M:PhysicsTools.Transformations.TransformVelocityTracker.SetRotateSampleTime(System.Single)">
+            <summary>Sets the 'rotateSampleTime' field of this component. Useful for use with Unity editor events.</summary>
+            <param name="pTime"></param>
+        </member>
+        <member name="T:PhysicsTools.Utility.RigidbodyUtility">
+            <summary>
+            A public static class that provides useful Rigidbody utilities.
+            </summary>
+            Author: Mathew Aloisio
+        </member>
+        <member name="M:PhysicsTools.Utility.RigidbodyUtility.IsColliderPartOfRigidbody(UnityEngine.Rigidbody,UnityEngine.Collider,System.Boolean)">
+            <summary>Returns true if the specified collider, pCollider, is part of the specified Rigidbody, pRigidbody, otherwise false.</summary>
+            <param name="pRigidbody"></param>
+            <param name="pCollider"></param>
+            <param name="pAllowNestedRigidbodies">Should nested Rigidbody colliders be included?</param>
+            <returns>true if the specified collider, pCollider, is part of the specified Rigidbody, pRigidbody, otherwise false.</returns>
+        </member>
+        <member name="M:PhysicsTools.Utility.RigidbodyUtility.GetCollidersOfRigidbody(UnityEngine.Rigidbody,System.Boolean)">
+            <summary>Returns a List of Colliders that are part of the specified Rigidbody, pRigidbody.</summary>
+            <param name="pRigidbody"></param>
+            <param name="pAllowNestedRigidbodies">Should nested Rigidbody colliders be included?</param>
+            <returns>A List of Colliders that are part of the specified Rigidbody, pRigidbody.</returns>
+        </member>
+        <member name="M:PhysicsTools.Utility.RigidbodyUtility.RecursiveIsColliderPartOfRigidbody(UnityEngine.Transform,UnityEngine.Collider,System.Boolean,System.Boolean@)">
+            <summary>Recursively checks if a collider is part of a Transform using Rigidbodies as delimiters if pAllowNestedRigidbodies is false.</summary>
+            <param name="pTransform"></param>
+            <param name="pCollider"></param>
+            <param name="pAllowNestedRigidbodies">Should nested Rigidbody colliders be included?</param>
+            <param name="pResult"></param>
+        </member>
+        <member name="M:PhysicsTools.Utility.RigidbodyUtility.RecursiveGetCollidersOfRigidbody(UnityEngine.Transform,System.Collections.Generic.List{UnityEngine.Collider},System.Boolean)">
+            <summary>Recursively gets a List of Colliders that are part of a Transform using Rigidbodies as delimiters if pAllowNestedRigidbodies is false.</summary>
+            <param name="pTransform"></param>
+            <param name="pColliders"></param>
+            <param name="pAllowNestedRigidbodies">Should nested Rigidbody colliders be included?</param>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,695 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>AdaptiveHands-Runtime</name>
+    </assembly>
+    <members>
+        <member name="T:AdaptiveHands.BendStates.BendStateSwapper">
+            <summary>
+            A public class that allows 'bent' and 'unbent' hand states to be named, saved, and swapped at runtime or in the editor.
+            </summary>
+            Author: Mathew Aloisio
+        </member>
+        <member name="P:AdaptiveHands.BendStates.BendStateSwapper.CurrentStateIndex">
+            <summary>The current state index the poser is in, or STATE_NONE (-1) if not in any state.</summary>
+        </member>
+        <member name="P:AdaptiveHands.BendStates.BendStateSwapper.StateCount">
+            <summary>Returns the number of poses this component has registered.</summary>
+        </member>
+        <member name="P:AdaptiveHands.BendStates.BendStateSwapper.Hand">
+            <summary>Returns the reference to the KinematicHand this poser belongs to.</summary>
+        </member>
+        <member name="F:AdaptiveHands.BendStates.BendStateSwapper.m_Hand">
+            <summary>The hidden backing field for the 'Hand' property.</summary>
+        </member>
+        <member name="F:AdaptiveHands.BendStates.BendStateSwapper.m_States">
+            <summary>A list of BendStates that are registered with this poser.</summary>
+        </member>
+        <member name="F:AdaptiveHands.BendStates.BendStateSwapper.STATE_NONE">
+            <summary>The value that represents no state index.</summary>
+        </member>
+        <member name="M:AdaptiveHands.BendStates.BendStateSwapper.SetBendStatesToCurrentState">
+            <summary>Sets the bend states of the Hands finger bones to the current state.</summary>
+        </member>
+        <member name="M:AdaptiveHands.BendStates.BendStateSwapper.SetBendStatesToState(AdaptiveHands.BendStates.BendState)">
+            <summary>Sets the bend states of the Hands finger bones to the given state, pState.</summary>
+            <param name="pState">The BendState to set the state to.</param>
+        </member>
+        <member name="M:AdaptiveHands.BendStates.BendStateSwapper.SetBendStatesToStateIndex(System.Int32)">
+            <summary>Sets the bend states of the Hands finger bones to the given state index.</summary>
+            <param name="pIndex">The index of the BendState to set the state to.</param>
+        </member>
+        <member name="M:AdaptiveHands.BendStates.BendStateSwapper.SetState(System.String)">
+            <summary>
+            Sets the poser to the state with the given name.
+            If not found or pStateName is null the state is cleared.
+            </summary>
+            <param name="pStateName"></param>
+        </member>
+        <member name="M:AdaptiveHands.BendStates.BendStateSwapper.SetStateByIndex(System.Int32)">
+            <summary>Sets the state by index.</summary>
+            <param name="pIndex"></param>
+        </member>
+        <member name="M:AdaptiveHands.BendStates.BendStateSwapper.ClearState">
+            <summary>Clears the current state.</summary>
+        </member>
+        <member name="M:AdaptiveHands.BendStates.BendStateSwapper.SaveDefaultNoBendState">
+            <summary>Saves/overwrites the default 'full bend' info state using the current settings for the relevant hand.</summary>
+        </member>
+        <member name="M:AdaptiveHands.BendStates.BendStateSwapper.SaveDefaultFullBendState">
+            <summary>Saves/overwrites the default 'full bend' info state using the current settings for the relevant hand.</summary>
+        </member>
+        <member name="M:AdaptiveHands.BendStates.BendStateSwapper.SaveNewState(System.String)">
+            <summary>Saves a new state with the given name and the default bend settings.</summary>
+            <param name="pStateName"></param>
+        </member>
+        <member name="M:AdaptiveHands.BendStates.BendStateSwapper.SaveNoBendState(System.String)">
+            <summary>
+            Saves the current Hand 'full bend' state as a state with the given name pStateName.
+            Overwrites existing entries.
+            </summary>
+            <param name="pStateName"></param>
+        </member>
+        <member name="M:AdaptiveHands.BendStates.BendStateSwapper.SaveNoBendStateByIndex(System.Int32)">
+            <summary>
+            Saves the current Hand 'full bend' state overwriting the state in the given index, pIndex.
+            Overwrites existing entries.
+            
+            NOTE: This method does not perform any error checking to ensure the state at pIndex is valid.
+            </summary>
+            <param name="pIndex"></param>
+        </member>
+        <member name="M:AdaptiveHands.BendStates.BendStateSwapper.SaveFullBendState(System.String)">
+            <summary>
+            Saves the current Hand 'full bend' state as a state with the given name pStateName.
+            Overwrites existing entries.
+            </summary>
+            <param name="pStateName"></param>
+        </member>
+        <member name="M:AdaptiveHands.BendStates.BendStateSwapper.SaveFullBendStateByIndex(System.Int32)">
+            <summary>
+            Saves the current Hand 'full bend' state overwriting the state in the given index, pIndex.
+            Overwrites existing entries.
+            
+            NOTE: This method does not perform any error checking to ensure the state at pIndex is valid.
+            </summary>
+            <param name="pIndex"></param>
+        </member>
+        <member name="M:AdaptiveHands.BendStates.BendStateSwapper.DeleteStateByName(System.String)">
+            <summary>Delets a state by name.</summary>
+            <param name="pStateName"></param>
+        </member>
+        <member name="M:AdaptiveHands.BendStates.BendStateSwapper.DeleteStateByIndex(System.Int32)">
+            <summary>Deletes a state by index.</summary>
+            <param name="pIndex"></param>
+        </member>
+        <member name="M:AdaptiveHands.BendStates.BendStateSwapper.GetStateByName(System.String)">
+            <summary>
+            Returns the BendState with the given name, or null if not found.
+            Note that 'defaultBendState' cannot be retrieved by name, only custom registered states can be retrieved using this method.
+            </summary>
+            <param name="pStateName"></param>
+            <returns>the BendState with the given name, or null if not found.</returns>
+        </member>
+        <member name="M:AdaptiveHands.BendStates.BendStateSwapper.GetStateIndexByName(System.String)">
+            <summary>
+            Returns the index of the state with the given name, or STATE_NONE (-1) if not found.
+            Note that 'defaultBendState' cannot be retrieved by name, only custom registered states can be retrieved using this method.
+            </summary>
+            <param name="pStateName"></param>
+            <returns>an int representing the index of the state with the given name, or STATE_NONE (-1) if not found.</returns>
+        </member>
+        <member name="M:AdaptiveHands.BendStates.BendStateSwapper.GetStateByIndex(System.Int32)">
+            <summary>Returns the BendState at the given index.</summary>
+            <param name="pIndex"></param>
+            <returns>the BendState at the given index.</returns>
+        </member>
+        <member name="M:AdaptiveHands.BendStates.BendStateSwapper.GetCurrentBendStateData">
+            <summary>Generates and returns a List of BendState.BoneEntrys that contains the current finger bones full and full bend infos.</summary>
+            <returns></returns>
+        </member>
+        <member name="M:AdaptiveHands.BendStates.BendStateSwapper.GetBendStateByName(System.String)">
+            <summary>Returns the BendState with the given name, or null if not found.</summary>
+            <param name="pBendStateName"></param>
+            <returns>the BendState with the given name, or null if not found.</returns>
+        </member>
+        <member name="M:AdaptiveHands.BendStates.BendStateSwapper.GetBendStateIndexByName(System.String)">
+            <summary>Returns the index of the pose with the given name, or STATE_NONE (-1) if not found.</summary>
+            <param name="pBendStateName"></param>
+            <returns>an int representing the index of the pose with the given name, or STATE_NONE (-1) if not found.</returns>
+        </member>
+        <member name="M:AdaptiveHands.BendStates.BendStateSwapper.GetBendStateByIndex(System.Int32)">
+            <summary>Retrieves the BendState in the given 'states' index, pIndex. </summary>
+            <param name="pIndex"></param>
+            <returns>the BendState in the given 'states' index, pIndex.</returns>
+        </member>
+        <member name="M:AdaptiveHands.BendStates.BendStateSwapper.OverwriteBendStates(System.Collections.Generic.List{AdaptiveHands.BendStates.BendState})">
+            <summary>Overwrites the 'Bend State' List with the given one.</summary>
+            <param name="pStates">A List of BendStates.</param>
+        </member>
+        <member name="T:AdaptiveHands.BendStates.BendState">
+            <summary>A bend state that holds bent/unbent state for a hand.</summary>
+        </member>
+        <member name="M:AdaptiveHands.BendStates.BendState.CopyBendStateData">
+            <summary>Generates and returns a deep copy of the 'bendStateData' array for this BendState.</summary>
+            <returns>a deep copy of the 'bendStateData' array for this BendState.</returns>
+        </member>
+        <member name="T:AdaptiveHands.Delegates.ActionRef`1">
+            <summary>A simple delegate for events where an argument is passed by reference.</summary>
+            <typeparam name="T">The type of the passed reference.</typeparam>
+            <param name="pItem">The reference that was passed.</param>
+        </member>
+        <member name="T:AdaptiveHands.Delegates.ActionRef`2">
+            <summary>A simple delegate for events where an argument is passed by reference.</summary>
+            <typeparam name="VALUE_ONE">The type of the fist passed value.</typeparam>
+            <typeparam name="T">The type of the passed reference.</typeparam>
+            <param name="pValueOne">The first value that was passed.</param>
+            <param name="pItem">The reference that was passed.</param>
+        </member>
+        <member name="T:AdaptiveHands.Delegates.ActionRef`3">
+            <summary>A simple delegate for events where an argument is passed by reference.</summary>
+            <typeparam name="VALUE_ONE">The type of the first passed value.</typeparam>
+            <typeparam name="VALUE_TWO">The type of the second passed value.</typeparam>
+            <typeparam name="T">The type of the passed reference.</typeparam>
+            <param name="pValueOne">The first value that was passed.</param>
+            <param name="pValueTwo">The second value that was passed.</param>
+            <param name="pItem">The reference that was passed.</param>
+        </member>
+        <member name="T:AdaptiveHands.Delegates.ActionRef`4">
+            <summary>A simple delegate for events where an argument is passed by reference.</summary>
+            <typeparam name="VALUE_ONE">The type of the first passed value.</typeparam>
+            <typeparam name="VALUE_TWO">The type of the second passed value.</typeparam>
+            <typeparam name="VALUE_THREE">The type of the third passed value.</typeparam>
+            <typeparam name="T">The type of the passed reference.</typeparam>
+            <param name="pValueOne">The first value that was passed.</param>
+            <param name="pValueTwo">The second value that was passed.</param>
+            <param name="pValueThree">The third value that was passed.</param>
+            <param name="pItem">The reference that was passed.</param>
+        </member>
+        <member name="T:AdaptiveHands.Delegates.DoubleActionRef`2">
+            <summary>A simple delegate for events where two arguments are passed by reference.</summary>
+            <typeparam name="T1">The type of the first passed reference.</typeparam>
+            <typeparam name="T2">The type of the second passed reference.</typeparam>
+            <param name="pItemA">The first reference that was passed.</param>
+            <param name="pItemB">The second reference that was passed.</param>
+        </member>
+        <member name="T:AdaptiveHands.Delegates.DoubleActionRef`3">
+            <summary>A simple delegate for events where two arguments are passed by reference.</summary>
+            <typeparam name="V1">The type of the first passed value.</typeparam>
+            <typeparam name="T1">The type of the first passed reference.</typeparam>
+            <typeparam name="T2">The type of the second passed reference.</typeparam>
+            <param name="pValueA">The first value that was passed.</param>
+            <param name="pItemA">The first reference that was passed.</param>
+            <param name="pItemB">The second reference that was passed.</param>
+        </member>
+        <member name="T:AdaptiveHands.Delegates.DoubleActionRef`4">
+            <summary>A simple delegate for events where two arguments are passed by reference.</summary>
+            <typeparam name="V1">The type of the first passed value.</typeparam>
+            <typeparam name="V2">The type of the second passed value.</typeparam>
+            <typeparam name="T1">The type of the first passed reference.</typeparam>
+            <typeparam name="T2">The type of the second passed reference.</typeparam>
+            <param name="pValueA">The first value that was passed.</param>
+            <param name="pValueB">The second value that was passed.</param>
+            <param name="pItemA">The first reference that was passed.</param>
+            <param name="pItemB">The second reference that was passed.</param>
+        </member>
+        <member name="T:AdaptiveHands.Delegates.DoubleActionRef`5">
+            <summary>A simple delegate for events where two arguments are passed by reference.</summary>
+            <typeparam name="V1">The type of the first passed value.</typeparam>
+            <typeparam name="V2">The type of the second passed value.</typeparam>
+            <typeparam name="V3">The type of the third passed value.</typeparam>
+            <typeparam name="T1">The type of the first passed reference.</typeparam>
+            <typeparam name="T2">The type of the second passed reference.</typeparam>
+            <param name="pValueA">The first value that was passed.</param>
+            <param name="pValueB">The second value that was passed.</param>
+            <param name="pValueC">The third value that was passed.</param>
+            <param name="pItemA">The first reference that was passed.</param>
+            <param name="pItemB">The second reference that was passed.</param>
+        </member>
+        <member name="T:AdaptiveHands.Events.BendStateAreaUnityEvent">
+            <summary>
+            Arg0: BendStateArea - The BendStateArea involved in the event.
+            Arg1: BendStateSwapper - The BendStateSwapper involved in the event.
+            </summary>
+        </member>
+        <member name="T:AdaptiveHands.Events.HandPoseAreaUnityEvent">
+            <summary>
+            Arg0: HandPoseArea - The HandPoseArea involved in the event.
+            Arg1: HandPoser - The HandPoser involved in the event.
+            </summary>
+        </member>
+        <member name="T:AdaptiveHands.KinematicFinger">
+            <summary>
+            Holds information about a finger from a KinematicHand.
+            </summary>
+            Author: Mathew Aloisio
+        </member>
+        <member name="F:AdaptiveHands.KinematicFinger.CapsulePoints.point1">
+            <summary>The first point of the capsule (the center of the first sphere of the capsule).</summary>
+        </member>
+        <member name="F:AdaptiveHands.KinematicFinger.CapsulePoints.point2">
+            <summary>The second point of the capsule (the center of the second sphere of the capsule).</summary>
+        </member>
+        <member name="T:AdaptiveHands.KinematicFinger.Bone">
+            <summary>A finger bone.</summary>
+        </member>
+        <member name="P:AdaptiveHands.KinematicFinger.Bone.Bend">
+            <summary>The actual current bend value for the finger bone. (0 - no bend | 1 - full bend)</summary>
+        </member>
+        <member name="P:AdaptiveHands.KinematicFinger.Bone.CanBend">
+            <summary>Returns true if this bone could be bent last frame, otherwise false.</summary>
+        </member>
+        <member name="P:AdaptiveHands.KinematicFinger.Bone.BendBlockedByCollision">
+            <summary>Returns true if this finger bone's bend is blocked by a collision, otherwise false.</summary>
+        </member>
+        <member name="P:AdaptiveHands.KinematicFinger.Bone.BoneIndex">
+            <summary>The index of this bone in it's KinematicFingers bones array.</summary>
+        </member>
+        <member name="P:AdaptiveHands.KinematicFinger.Bone.Finger">
+            <summary>A reference to the KinematicFinger this KinematicFinger.Bone belongs to.</summary>
+        </member>
+        <member name="P:AdaptiveHands.KinematicFinger.Bone.TargetLocalPosition">
+            <summary>The localPosition target this finger bone is moving towards.</summary>
+        </member>
+        <member name="P:AdaptiveHands.KinematicFinger.Bone.TargetLocalRotation">
+            <summary>The localRotation target this finger bone is moving towards.</summary>
+        </member>
+        <member name="P:AdaptiveHands.KinematicFinger.Bone.DisableGizmos">
+            <summary>Allows gizmos for the finger bone to be forcibly disabled.</summary>
+        </member>
+        <member name="P:AdaptiveHands.KinematicFinger.Bone.WorldColliderUp">
+            <summary>
+            Returns the world space 'up' direction based on the colliderUp direction given in colliderTransforms local space.
+            WARNING: If colliderTransform is null this will cause an error.
+            </summary>
+        </member>
+        <member name="P:AdaptiveHands.KinematicFinger.Bone.WorldColliderForward">
+            <summary>
+            Returns the world space 'forward' direction based on the colliderForward direction given in colliderTransforms local space.
+            WARNING: If colliderTransform is null this will cause an error.
+            </summary>
+        </member>
+        <member name="P:AdaptiveHands.KinematicFinger.Bone.WorldColliderOffset">
+            <summary>
+            Returns the world space offset for this bone based on the colliderOffset given in colliderTransforms local space.
+            WARNING: If colliderTransform is null this will cause an error.
+            </summary>
+        </member>
+        <member name="P:AdaptiveHands.KinematicFinger.Bone.OffsetColliderPosition">
+            <summary>
+            Returns the world space position of the colliderTransform's position offset by colliderOffset in world spcae.
+            WARNING: If colliderTransform is null this will cause an error.
+            </summary>
+        </member>
+        <member name="E:AdaptiveHands.KinematicFinger.Bone.OverrideCollisionCheckDelegate">
+            <summary>
+            A delegate that allows collision checking for the finger bone to be overridden by subscribers.
+            Arg0: KinematicFinger.Bone - the KinematicFinger.Bone whose collisions are being checked.
+            Arg1: ref bool - a reference to the boolean that determine the resulting collision check result (true means collision blocking, false means no collision blocking.)
+            Arg2: ref bool - a reference to a boolean that determines whether or not to override the collision check in the first place (making this true lets the collision check system know to use the value of 'arg0' as the collision check result.)
+            </summary>
+        </member>
+        <member name="F:AdaptiveHands.KinematicFinger.Bone.m_CollisionResult">
+            <summary>Stores the result of a Physics.OverlapSphereNonAlloc with space for only 1 collider.</summary>
+        </member>
+        <member name="M:AdaptiveHands.KinematicFinger.Bone.MoveToBend">
+            <summary>Moves the finger bone to the current Bend position over time.</summary>
+        </member>
+        <member name="M:AdaptiveHands.KinematicFinger.Bone.MoveToBend(System.Single)">
+            <summary>Moves the finger bone to the pBend position over time.</summary>
+            <param name="pBend">The bend factor. (0-1)</param>
+        </member>
+        <member name="M:AdaptiveHands.KinematicFinger.Bone.SnapToBend">
+            <summary>Snaps the finger bone to the current Bend position instantly.</summary>
+        </member>
+        <member name="M:AdaptiveHands.KinematicFinger.Bone.SnapToBend(System.Single)">
+            <summary>Snaps the finger bone to the pBend position instantly.</summary>
+            <param name="pBend">The bend factor. (0-1)</param>
+        </member>
+        <member name="M:AdaptiveHands.KinematicFinger.Bone.ZeroCurrentBend">
+            <summary>Zeros the current bend for this finger bone and snaps to the zero'd bend.</summary>
+        </member>
+        <member name="M:AdaptiveHands.KinematicFinger.Bone.CorrectBend">
+            <summary>Corrects the Bend of the finger bone by checking all bend steps up til the current 'Bend' value.</summary>
+            <returns>true if the bend value was adjusted due to a collision, otherwise false.</returns>
+        </member>
+        <member name="M:AdaptiveHands.KinematicFinger.Bone.GetCapsulePoints">
+            <summary>
+            Returns a CapsulePoints instance that contains the 2 points of this fingers capsule collider.
+            NOTE: If colliderLength == 0 the same point (center point of the sphere collider) is returned as both point1 and point2.
+            WARNING: This method will throw an error if you invoke it while colliderTransform is null.
+            
+            CALCULATIONS:
+            point1 = colliderCenter
+            point2 = colliderCenter + (WorldColliderForward * colliderLength)
+            </summary>
+            <returns>a CapsulePoints instance that contains the 2 points of this fingers capsule collider.</returns>
+        </member>
+        <member name="M:AdaptiveHands.KinematicFinger.Bone.CheckIfBlockedByCollision">
+            <summary>Checks if this finger bone is blocked by a collision and returns true if this finger bone is blocked by a collision, otherwise false.</summary>
+            <returns>true if this finger bone is blocked by a collision, otherwise false.</returns>
+        </member>
+        <member name="M:AdaptiveHands.KinematicFinger.Bone.UpdateBend">
+            <summary>Moves the finger towards its bend target and positions and orientates the finger bone.</summary>
+        </member>
+        <member name="P:AdaptiveHands.KinematicFinger.AverageBend">
+            <summary>Returns the average 'Bend' value for all bones in this finger combined as of the last call to 'UpdateBend()'.</summary>
+        </member>
+        <member name="E:AdaptiveHands.KinematicFinger.ShouldUnbendObstructedDelegate">
+            <summary>
+            A callback that allows listeners to override the result of 'KinematicFinger.ShouldUnbendObstructed()'.
+            Setting the reference boolean to true forces the finger to unbend when the current bend state becomes obstructed, setting it to false prevents it from unbending due to obstructions.
+            Not changing the reference boolean leaves the existing behaviour.
+            
+            Arg0: KinematicFinger - The KinematicFinger testing if it should unbend when the current bend state becomes obstructed.
+            Arg1: ref bool        - true if it should unbend, otherwise false.
+            </summary>
+        </member>
+        <member name="P:AdaptiveHands.KinematicFinger.BoneGizmoColor">
+            <summary>The Color used to render finger bone gizmos.</summary>
+        </member>
+        <member name="M:AdaptiveHands.KinematicFinger.ShouldUnbendObstructed">
+            <summary>Tests whether 'unbendObstructed' is true or false and uses 'ShouldUnbendObstructedDelegate' to provide event listeners a chance to override this behaviour.</summary>
+            <returns>true if the finger should unbend due to obstructions to its current bend state, otherwise false.</returns>
+        </member>
+        <member name="M:AdaptiveHands.KinematicFinger.UpdateBend">
+            <summary>Updates the bend state for all bones in the finger.</summary>
+        </member>
+        <member name="M:AdaptiveHands.KinematicFinger.CalculateAverageBend">
+            <summary>(Re)calculates 'AverageBend' using the average of all 'Bone.Bend' values for all finger bones in this finger.</summary>
+        </member>
+        <member name="M:AdaptiveHands.KinematicFinger.ZeroCurrentBend">
+            <summary>Zeros and snaps to the zero'd currrent bend for all bones in the finger.</summary>
+        </member>
+        <member name="M:AdaptiveHands.KinematicFinger.SetUnbendObstructed(System.Boolean)">
+            <summary>A public method that allows the 'unbendObstructed' field of the KinematicFinger to be set. Useful for use with Unity editor events.</summary>
+            <param name="pUnbendObstructed"></param>
+        </member>
+        <member name="M:AdaptiveHands.KinematicFinger.ValidateBones">
+            <summary>For editor-only purposes. Ensures all child finger bones know their finger reference.</summary>
+        </member>
+        <member name="M:AdaptiveHands.KinematicFinger.Internal_DrawGizmo">
+            <summary>
+            Draws the gizmo for the KinematicFinger.
+            NOTE: This may only be called from OnDrawGizmo callbacks.
+            </summary>
+        </member>
+        <member name="T:AdaptiveHands.KinematicHand">
+            <summary>
+            Implements adaptive hand behaviour for a hand with fingers kinematically.
+            This component is only responsible for the hands visuals.
+            </summary>
+            Author: Mathew Aloisio
+        </member>
+        <member name="F:AdaptiveHands.KinematicHand.UpdateMode.Manual">
+            <summary>The hand must be manually updated via UpdateHand().</summary>
+        </member>
+        <member name="F:AdaptiveHands.KinematicHand.UpdateMode.Update">
+            <summary>The hand is updated every Update().</summary>
+        </member>
+        <member name="F:AdaptiveHands.KinematicHand.UpdateMode.LateUpdate">
+            <summary>The hand is updated every LateUpdate().</summary>
+        </member>
+        <member name="P:AdaptiveHands.KinematicHand.AverageFingerBend">
+            <summary>
+            The average actual finger bend value for all finger bones that make up this hand as calculated in the last call to 'UpdateHand()'.
+            Non-enabled finger components are ignored.
+            </summary>
+        </member>
+        <member name="M:AdaptiveHands.KinematicHand.UpdateHandFullBend">
+            <summary>Forces the hand to simulate an update enough times to complete a full bend.</summary>
+        </member>
+        <member name="M:AdaptiveHands.KinematicHand.ZeroAllFingerCurrentBend">
+            <summary>Immediately zeroes the current finger bend (and snaps to it) for all fingers in the hand.</summary>
+        </member>
+        <member name="M:AdaptiveHands.KinematicHand.SetAllFingerBendToCurrent">
+            <summary>Overrides the target bend value for all bones in all fingers of the hand with their current bend value.</summary>
+        </member>
+        <member name="M:AdaptiveHands.KinematicHand.SetAllFingerBend(System.Single)">
+            <summary>Sets all finger bone bend targets to pClosedness.</summary>
+            <param name="pClosedness">The close (bend) factor for the hand's fingers. (0-1)</param>
+        </member>
+        <member name="M:AdaptiveHands.KinematicHand.ZeroFingerCurrentBend(AdaptiveHands.KinematicFinger)">
+            <summary>Immediately zeroes the current finger bend (and snaps to it) for all fingers in the hand.</summary>
+        </member>
+        <member name="M:AdaptiveHands.KinematicHand.SetFingerBendToCurrent(AdaptiveHands.KinematicFinger)">
+            <summary>Overrides the target bend value for all bones in pFinger with their current bend value.</summary>
+            <param name="pFinger"></param>
+        </member>
+        <member name="M:AdaptiveHands.KinematicHand.SetFingerBend(AdaptiveHands.KinematicFinger,System.Single)">
+            <summary>Sets all finger bone bend targets to pClosedness.</summary>
+            <param name="pFinger">The KinematicFinger to set the bend values for.</param>
+            <param name="pClosedness">The close (bend) factor for the finger. (0-1)</param>
+        </member>
+        <member name="M:AdaptiveHands.KinematicHand.ZeroFingerBoneCurrentBend(AdaptiveHands.KinematicFinger.Bone)">
+            <summary>Immediately zeroes the current finger bone bend (and snaps to it) for the specified finger bone, pBone.</summary>
+        </member>
+        <member name="M:AdaptiveHands.KinematicHand.SetFingerBoneBendToCurrent(AdaptiveHands.KinematicFinger.Bone)">
+            <summary>Overrides the target bend value for pBone with the current bend value.</summary>
+            <param name="pBone"></param>
+        </member>
+        <member name="M:AdaptiveHands.KinematicHand.SetFingerBoneBend(AdaptiveHands.KinematicFinger.Bone,System.Single)">
+            <summary>Sets all finger bone bend targets to pClosedness.</summary>
+            <param name="pBone">The KinematicFinger.Bone to set the bend value for.</param>
+            <param name="pClosedness">The close (bend) factor for the finger bone. (0-1)</param>
+        </member>
+        <member name="M:AdaptiveHands.KinematicHand.SetUnbendObstructed(System.Boolean)">
+            <summary>Sets the 'unbendObstructed' field for all KinematicFingers that make up the hand at the same time.</summary>
+            <param name="pUnbendObstructed"></param>
+        </member>
+        <member name="M:AdaptiveHands.KinematicHand.UpdateHand">
+            <summary>Updates the hand, including the bend state for all fingers that are part of the hand.</summary>
+        </member>
+        <member name="T:AdaptiveHands.FingerBoneTransforms">
+            <summary>
+            A class that holds Transform references to all possible bones in a finger.
+            </summary>
+            Author: Mathew Aloisio
+        </member>
+        <member name="T:AdaptiveHands.HandBoneTransforms">
+            <summary>
+            A class that holds Transform references to all possible bones in a hand.
+            </summary>
+            Author: Mathew Aloisio
+        </member>
+        <member name="T:AdaptiveHands.Poser.HandPose">
+            <summary>A hand pose.</summary>
+        </member>
+        <member name="M:AdaptiveHands.Poser.HandPose.CopyHandPoseData">
+            <summary>Generates and returns a deep copy of the 'bendData' array for this HandPose.</summary>
+            <returns>a deep copy of the 'bendData' array for this HandPose.</returns>
+        </member>
+        <member name="T:AdaptiveHands.Poser.HandPoser">
+            <summary>
+            A component that allows poses to be saved and loaded for a hand.
+            </summary>
+            Author: Mathew Aloisio
+        </member>
+        <member name="P:AdaptiveHands.Poser.HandPoser.CurrentPoseIndex">
+            <summary>The current pose index the poser is in, or POSE_NONE (-1) if not in any pose.</summary>
+        </member>
+        <member name="P:AdaptiveHands.Poser.HandPoser.PoseCount">
+            <summary>Returns the number of poses this component has registered.</summary>
+        </member>
+        <member name="P:AdaptiveHands.Poser.HandPoser.Hand">
+            <summary>Returns the reference to the KinematicHand this poser belongs to.</summary>
+        </member>
+        <member name="F:AdaptiveHands.Poser.HandPoser.BlockPoseDelegate">
+            <summary>
+            a C# delegate event that provides a reference to a boolean that allows you to specify whether or not a pose should be set.
+            Arg0: HandPoser - The poser trying to set a hand pose.
+            Arg1: ref bool - Should the pose be blocked? If true blocks posing, otherwise has no effect if false.
+            </summary>
+        </member>
+        <member name="F:AdaptiveHands.Poser.HandPoser.m_Hand">
+            <summary>The hidden backing field for the 'Hand' property.</summary>
+        </member>
+        <member name="F:AdaptiveHands.Poser.HandPoser.m_Poses">
+            <summary>A list of HandPoses that are registered with this poser.</summary>
+        </member>
+        <member name="F:AdaptiveHands.Poser.HandPoser.POSE_NONE">
+            <summary>The value that represents no pose index.</summary>
+        </member>
+        <member name="M:AdaptiveHands.Poser.HandPoser.TrySetBendTargetsToCurrentPose">
+            <summary>Invokes SetBendTargetsToCurrentPose() but only if the 'BlockPoseDelegate' does not override it.</summary>
+        </member>
+        <member name="M:AdaptiveHands.Poser.HandPoser.SetBendTargetsToCurrentPose">
+            <summary>Sets the bend targets of the Hands finger bones to the current pose.</summary>
+        </member>
+        <member name="M:AdaptiveHands.Poser.HandPoser.SetBendTargetsToPose(AdaptiveHands.Poser.HandPose)">
+            <summary>Sets the bend targets of the Hands finger bones to the given pose, pPose.</summary>
+            <param name="pPose">The HandPose to set the pose to.</param>
+        </member>
+        <member name="M:AdaptiveHands.Poser.HandPoser.SetBendTargetsToPoseIndex(System.Int32)">
+            <summary>Sets the bend targets of the Hands finger bones to the given pose index.</summary>
+            <param name="pIndex">The index of the HandPose to set the pose to.</param>
+        </member>
+        <member name="M:AdaptiveHands.Poser.HandPoser.SetPose(System.String)">
+            <summary>
+            Sets the poser to the pose with the given name.
+            If not found or pPoseName is null the pose is cleared.
+            </summary>
+            <param name="pPoseName"></param>
+        </member>
+        <member name="M:AdaptiveHands.Poser.HandPoser.SetPoseByIndex(System.Int32)">
+            <summary>Sets the pose by index.</summary>
+            <param name="pIndex"></param>
+        </member>
+        <member name="M:AdaptiveHands.Poser.HandPoser.ClearPose">
+            <summary>Clears the current pose.</summary>
+        </member>
+        <member name="M:AdaptiveHands.Poser.HandPoser.SavePose(System.String)">
+            <summary>
+            Saves the current Hand state as a pose with the given name pPoseName.
+            Overwrites existing entries.
+            </summary>
+            <param name="pPoseName"></param>
+        </member>
+        <member name="M:AdaptiveHands.Poser.HandPoser.SavePoseByIndex(System.Int32)">
+            <summary>Saves the current Hand state in the pose at the given index. (Only usable for overwriting existing poses.)</summary>
+            <param name="pIndex"></param>
+        </member>
+        <member name="M:AdaptiveHands.Poser.HandPoser.DeletePoseByName(System.String)">
+            <summary>Delets a pose by name.</summary>
+            <param name="pPoseName"></param>
+        </member>
+        <member name="M:AdaptiveHands.Poser.HandPoser.DeletePoseByIndex(System.Int32)">
+            <summary>Deletes a pose by index.</summary>
+            <param name="pIndex"></param>
+        </member>
+        <member name="M:AdaptiveHands.Poser.HandPoser.GetPoseByName(System.String)">
+            <summary>Returns the HandPose with the given name, or null if not found.</summary>
+            <param name="pPoseName"></param>
+            <returns>the HandPose with the given name, or null if not found.</returns>
+        </member>
+        <member name="M:AdaptiveHands.Poser.HandPoser.GetPoseIndexByName(System.String)">
+            <summary>Returns the index of the pose with the given name, or POSE_NONE (-1) if not found.</summary>
+            <param name="pPoseName"></param>
+            <returns>an int representing the index of the pose with the given name, or POSE_NONE (-1) if not found.</returns>
+        </member>
+        <member name="M:AdaptiveHands.Poser.HandPoser.GetCurrentHandPose">
+            <summary>Returns the current hand state as a HandPose or null if failed to generate.</summary>
+            <returns>the current hand state as a HandPose or null if failed to generate.</returns>
+        </member>
+        <member name="M:AdaptiveHands.Poser.HandPoser.GetPoseByIndex(System.Int32)">
+            <summary>Returns the HandPose at the given index.</summary>
+            <param name="pIndex"></param>
+            <returns>the HandPose at the given index.</returns>
+        </member>
+        <member name="M:AdaptiveHands.Poser.HandPoser.OverwritePoses(System.Collections.Generic.List{AdaptiveHands.Poser.HandPose})">
+            <summary>Overwrites the poses in this components 'poses' list with the given poses, pPoses.</summary>
+            <param name="pPoses"></param>
+        </member>
+        <member name="T:AdaptiveHands.Triggers.BendStateArea">
+            <summary>
+            A simple component that uses the 'OnTriggerEnter' and 'OnTriggerExit' callbacks to set a state on a BendStateSwapper that enters a trigger and clears it when it exits the trigger.
+            </summary>
+            Author: Mathew Aloisio
+        </member>
+        <member name="E:AdaptiveHands.Triggers.BendStateArea.BlockBendStateSwapDelegate">
+            <summary>
+            A C# event delegate that provides the opportunity for external scripts to block the bend state area from posing under certain conditions.
+            Arg0: BendStateArea - The BendStateArea triggering the bend state swapping.
+            Arg1: BendStateSwapper - The BendStateSwapper being triggered by the area.
+            Arg2: ref bool - If true the bend state swap is blocked, otherwise if false the bend state area will function normally.
+            </summary>
+        </member>
+        <member name="F:AdaptiveHands.Triggers.BendStateArea.m_SwappersInArea">
+            <summary>A list of all BendStateSwapper components that are in the 'area' trigger.</summary>
+        </member>
+        <member name="M:AdaptiveHands.Triggers.BendStateArea.TrySwapperEnterArea(AdaptiveHands.BendStates.BendStateSwapper)">
+            <summary>Invokes OnSwapperEnteredArea(pSwapper) when nothing blocks the bend state area from swapping bend states.</summary>
+            <param name="pSwapper"></param>
+        </member>
+        <member name="M:AdaptiveHands.Triggers.BendStateArea.OnSwapperEnteredArea(AdaptiveHands.BendStates.BendStateSwapper)">
+            <summary>Invoked whenever a BendStateSwapper enters the area trigger.</summary>
+            <param name="pSwapper"></param>
+        </member>
+        <member name="M:AdaptiveHands.Triggers.BendStateArea.OnSwapperExitedArea(System.Int32,AdaptiveHands.BendStates.BendStateSwapper)">
+            <summary>Invoked whenever a BendStateSwapper exits the area trigger.</summary>
+            <param name="pIndex">The swappers index in the 'swapper in area' list.</param>
+            <param name="pSwapper"></param>
+        </member>
+        <member name="T:AdaptiveHands.Triggers.HandPoseArea">
+            <summary>
+            A simple component that uses the 'OnTriggerEnter' and 'OnTriggerExit' callbacks to set a state on a HandPoser that enters a trigger and clears it when it exits the trigger.
+            </summary>
+            Author: Mathew Aloisio
+        </member>
+        <member name="F:AdaptiveHands.Triggers.HandPoseArea.BendExitMode.None">
+            <summary>Don't change the hands bend values on exit.</summary>
+        </member>
+        <member name="F:AdaptiveHands.Triggers.HandPoseArea.BendExitMode.Zero">
+            <summary>Zero the hands bend values on exit.</summary>
+        </member>
+        <member name="F:AdaptiveHands.Triggers.HandPoseArea.BendExitMode.Full">
+            <summary>Fully bend the hands on exit.</summary>
+        </member>
+        <member name="F:AdaptiveHands.Triggers.HandPoseArea.BendExitMode.Restore">
+            <summary>Cache the hands bend values on enter, restore them on exit.</summary>
+        </member>
+        <member name="F:AdaptiveHands.Triggers.HandPoseArea.Entry.poser">
+            <summary>A reference to the HandPoser.</summary>
+        </member>
+        <member name="F:AdaptiveHands.Triggers.HandPoseArea.Entry.cachedPose">
+            <summary>A reference to the cached HandPose for the hand, otherwise null.</summary>
+        </member>
+        <member name="E:AdaptiveHands.Triggers.HandPoseArea.BlockHandPoseDelegate">
+            <summary>
+            A C# event delegate that provides the opportunity for external scripts to block the hand pose area from posing under certain conditions.
+            Arg0: HandPoseArea - The HandPoseArea doing the posing.
+            Arg1: HandPoser - The HandPoser being posed.
+            Arg2: ref bool - If true the hand pose area is blocked, otherwise if false the pose area will function normally.
+            </summary>
+        </member>
+        <member name="F:AdaptiveHands.Triggers.HandPoseArea.m_PosersInArea">
+            <summary>A list of all Entrys that are in the 'area' trigger.</summary>
+        </member>
+        <member name="M:AdaptiveHands.Triggers.HandPoseArea.IsPoserInArea(AdaptiveHands.Poser.HandPoser)">
+            <summary>Returns true if pPoser is in the area, otherwise false.</summary>
+            <param name="pPoser"></param>
+            <returns>true if pPoser is in the area, otherwise false.</returns>
+        </member>
+        <member name="M:AdaptiveHands.Triggers.HandPoseArea.TryPoserEnterArea(AdaptiveHands.Poser.HandPoser)">
+            <summary>Registers that the HandPoser entered the pose area if not blocked by anything.</summary>
+            <param name="pPoser"></param>
+        </member>
+        <member name="M:AdaptiveHands.Triggers.HandPoseArea.OnPoserEnteredArea(AdaptiveHands.Poser.HandPoser)">
+            <summary>Invoked whenever a HandPoser enters the area trigger.</summary>
+            <param name="pPoser"></param>
+        </member>
+        <member name="M:AdaptiveHands.Triggers.HandPoseArea.OnPoserExitedArea(AdaptiveHands.Triggers.HandPoseArea.Entry)">
+            <summary>Invoked whenever a HandPoser exits the area trigger.</summary>
+            <param name="pEntry"></param>
+        </member>
+        <member name="T:AdaptiveHands.Utility.GizmoUtility">
+            <summary>A public static class that provides extra runtime methods relating to gizmos.</summary>
+            Author: Mathew Aloisio
+        </member>
+        <member name="M:AdaptiveHands.Utility.GizmoUtility.DrawWireCapsule(UnityEngine.Vector3,UnityEngine.Vector3,System.Single)">
+            <summary>Draws a gizmo for a capsule.</summary>
+            <param name="pPoint1">The center point of the first sphere of the capsule.</param>
+            <param name="pPoint2">The center point of the second sphere of the capsule.</param>
+            <param name="pRadius">The radius of the capsule spheres.</param>
+        </member>
+        <member name="M:AdaptiveHands.Utility.GizmoUtility.DrawWireArc(UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Vector3,System.Single,System.Single)">
+            <summary>Draws a wireframe arc gizmo.</summary>
+            <param name="pCenter">The center of the wire arc.</param>
+            <param name="pNormal">A normal direction vector.</param>
+            <param name="pFrom">The 'from' direction.</param>
+            <param name="pAngle">The arc angle.</param>
+            <param name="pRadius">The radius of the arc.</param>
+        </member>
+        <member name="T:AdaptiveHands.Utility.TransformUtility">
+            <summary>
+            A public static class that provides helper methods for working with Transforms.
+            </summary>
+            Author: Mathew Aloisio
+        </member>
+        <member name="M:AdaptiveHands.Utility.TransformUtility.GetScalar(UnityEngine.Transform)">
+            <summary>Returns the world space absolute scalar based on the largest lossyScale axis of the Transform.</summary>
+            <param name="pTransform"></param>
+            <returns>A float with a value equal to the largest lossyScale axis of pTransform.</returns>
+        </member>
+    </members>
+</doc>
